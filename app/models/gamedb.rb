@@ -1,0 +1,2 @@
+class Gamedb < ApplicationRecord
+end
