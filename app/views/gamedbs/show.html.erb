@@ -1,4 +1,19 @@
 <p id="notice"><%= notice %></p>
 
+<p>
+  <strong>Username:</strong>
+  <%= @gamedb.username %>
+</p>
+
+<p>
+  <strong>Password:</strong>
+  <%= @gamedb.password %>
+</p>
+
+<p>
+  <strong>Steamid:</strong>
+  <%= @gamedb.steamID %>
+</p>
+
 <%= link_to 'Edit', edit_gamedb_path(@gamedb) %> |
 <%= link_to 'Back', gamedbs_path %>

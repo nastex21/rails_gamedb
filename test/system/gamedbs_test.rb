@@ -14,6 +14,9 @@ class GamedbsTest < ApplicationSystemTestCase
     visit gamedbs_url
     click_on "New Gamedb"
 
+    fill_in "Password", with: @gamedb.password
+    fill_in "Steamid", with: @gamedb.steamID
+    fill_in "Username", with: @gamedb.username
     click_on "Create Gamedb"
 
     assert_text "Gamedb was successfully created"
@@ -24,6 +27,9 @@ class GamedbsTest < ApplicationSystemTestCase
     visit gamedbs_url
     click_on "Edit", match: :first
 
+    fill_in "Password", with: @gamedb.password
+    fill_in "Steamid", with: @gamedb.steamID
+    fill_in "Username", with: @gamedb.username
     click_on "Update Gamedb"
 
     assert_text "Gamedb was successfully updated"

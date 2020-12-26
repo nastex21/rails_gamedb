@@ -69,6 +69,6 @@ class GamedbsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gamedb_params
-      params.fetch(:gamedb, {})
+      params.require(:gamedb).permit(:username, :password, :steamID)
     end
 end

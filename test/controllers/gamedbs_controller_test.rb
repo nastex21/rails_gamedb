@@ -17,7 +17,7 @@ class GamedbsControllerTest < ActionDispatch::IntegrationTest
 
   test "should create gamedb" do
     assert_difference('Gamedb.count') do
-      post gamedbs_url, params: { gamedb: {  } }
+      post gamedbs_url, params: { gamedb: { password: @gamedb.password, steamID: @gamedb.steamID, username: @gamedb.username } }
     end
 
     assert_redirected_to gamedb_url(Gamedb.last)
@@ -34,7 +34,7 @@ class GamedbsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should update gamedb" do
-    patch gamedb_url(@gamedb), params: { gamedb: {  } }
+    patch gamedb_url(@gamedb), params: { gamedb: { password: @gamedb.password, steamID: @gamedb.steamID, username: @gamedb.username } }
     assert_redirected_to gamedb_url(@gamedb)
   end
 
