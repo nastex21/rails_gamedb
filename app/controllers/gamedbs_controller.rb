@@ -1,5 +1,7 @@
 class GamedbsController < ApplicationController
   before_action :set_gamedb, only: [:show, :edit, :update, :destroy]
+  before_action :authenticate_user!, except: [:index, :show]
+  before_action :correct_user, only: [:edit, :update, :destroy]
 
   # GET /gamedbs
   # GET /gamedbs.json
@@ -15,6 +17,7 @@ class GamedbsController < ApplicationController
   # GET /gamedbs/new
   def new
     @gamedb = Gamedb.new
+
   end
 
   # GET /gamedbs/1/edit
@@ -24,7 +27,9 @@ class GamedbsController < ApplicationController
   # POST /gamedbs
   # POST /gamedbs.json
   def create
-    @gamedb = Gamedb.new(gamedb_params)
+    #@gamedb = Gamedb.new(gamedb_params)
+    @gamedb = current_user.gamedbs.bulid(gamedb_params)
+
 
     respond_to do |format|
       if @gamedb.save
@@ -61,6 +66,11 @@ class GamedbsController < ApplicationController
     end
   end
 
+  def correct_user
+    @gamedb = current_user.gamedbs.findby(id: params[:id])
+    redirect_to gamedbs_path, notice: "Not Authorized" if @gamedb.nil?
+  end
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_gamedb
@@ -69,6 +79,6 @@ class GamedbsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def gamedb_params
-      params.require(:gamedb).permit(:username, :password, :steamID)
+      params.require(:gamedb).permit(:username, :password, :steamID, :user_id)
     end
 end
