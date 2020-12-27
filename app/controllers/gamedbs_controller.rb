@@ -28,7 +28,7 @@ class GamedbsController < ApplicationController
   # POST /gamedbs.json
   def create
     #@gamedb = Gamedb.new(gamedb_params)
-    @gamedb = current_user.gamedbs.bulid(gamedb_params)
+    @gamedb = current_user.gamedbs.build(gamedb_params)
 
 
     respond_to do |format|
