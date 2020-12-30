@@ -4,5 +4,6 @@ class User < ApplicationRecord
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :validatable
 
-        has_many :gamedbs
+         has_many :steam_games
+         has_many :manually_added_games
 end

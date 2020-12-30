@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Steam Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @steam_games.each do |steam_game| %>
+      <tr>
+        <td><%= steam_game.title %></td>
+        <td><%= link_to 'Show', steam_game %></td>
+        <td><%= link_to 'Edit', edit_steam_game_path(steam_game) %></td>
+        <td><%= link_to 'Destroy', steam_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Steam Game', new_steam_game_path %>

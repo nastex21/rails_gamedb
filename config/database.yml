@@ -20,6 +20,9 @@ default: &default
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
   pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: nasax2000
+  password: 'jT52#DsM'
+  port: 5432
 
 development:
   <<: *default
@@ -32,7 +35,7 @@ development:
   username: nasax2000
 
   # The password associated with the postgres role (username).
-  password: 498618
+  password: 'jT52#DsM'
 
   # Connect on a TCP socket. Omitted by default since the client uses a
   # domain socket that doesn't need configuration. Windows does not have
@@ -41,7 +44,7 @@ development:
 
   # The TCP port the server listens on. Defaults to 5432.
   # If your server runs on a different port number, change accordingly.
-  port: 5433
+  port: 5432
 
   # Schema search path. The server defaults to $user,public
   #schema_search_path: myapp,sharedapp,public
@@ -59,9 +62,9 @@ test:
   <<: *default
   database: rails_gamedb_test
   host: localhost
-  port: 5433
+  port: 5432
   username: nasax2000
-  password: 498618
+  password: 'jT52#DsM'
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
@@ -85,5 +88,5 @@ test:
 production:
   <<: *default
   database: rails_gamedb_production
-  username: rails_gamedb
-  password: <%= ENV['RAILS_GAMEDB_DATABASE_PASSWORD'] %>
+  username: nasax2000
+  password: 'jT52#DsM'

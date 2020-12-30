@@ -1,0 +1,27 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Manually Added Games</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @manually_added_games.each do |manually_added_game| %>
+      <tr>
+        <td><%= manually_added_game.title %></td>
+        <td><%= link_to 'Show', manually_added_game %></td>
+        <td><%= link_to 'Edit', edit_manually_added_game_path(manually_added_game) %></td>
+        <td><%= link_to 'Destroy', manually_added_game, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Manually Added Game', new_manually_added_game_path %>
