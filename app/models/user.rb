@@ -5,5 +5,5 @@ class User < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
          has_many :steam_games
-         has_many :manually_added_games
+         has_many :manually_created_games
 end

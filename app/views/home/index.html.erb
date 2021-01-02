@@ -1,0 +1,58 @@
+<table class="table table-hover table-striped">
+  <thead class="table-dark">
+    <tr>
+      <th scope="col">Game ID</th>
+      <th scope="col">Image</th>
+      <th scope="col">Title</th>
+      <th scope="col">System</th>
+      <th scope="col">Released Date</th>
+      <th scope="col">User ID</th>
+    </tr>
+  </thead>
+  <tbody>
+      <% @steam_games.each do |game| %>
+    <tr>
+      <td>
+        <%= game.game_id %>
+      </td>
+      <td>
+        <%= game.image %>
+      </td>
+      <td>
+        <%= game.title %>
+      </td>
+      <td>
+        <%= "PC" %>
+      </td>
+      <td>
+        <% nil %>
+      </td>
+      <td>
+        <%= game.user_id %>
+      </td>
+    </tr>
+    <% end %>
+    <% @manually_created_games.each do |game| %>
+    <tr>
+      <td>
+        <%= game.game_id %>
+      </td>
+      <td>
+        <%= game.image %>
+      </td>
+      <td>
+        <%= game.title %>
+      </td>
+      <td>
+        <%= game.system %>
+      </td>
+      <td>
+        <%= game.released_date %>
+      </td>
+      <td>
+        <%= game.user_id %>
+      </td>
+    </tr>
+    <% end %>
+  </tbody>
+</table>

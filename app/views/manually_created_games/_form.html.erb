@@ -1,0 +1,46 @@
+<%= form_with(model: manually_created_game, local: true) do |form| %>
+  <% if manually_created_game.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(manually_created_game.errors.count, "error") %> prohibited this manually_created_game from being saved:</h2>
+
+      <ul>
+        <% manually_created_game.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= form.label :game_id %>
+    <%= form.number_field :game_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :image %>
+    <%= form.text_field :image %>
+  </div>
+
+  <div class="field">
+    <%= form.label :system %>
+    <%= form.text_field :system %>
+  </div>
+
+  <div class="field">
+    <%= form.label :released_date %>
+    <%= form.text_field :released_date %>
+  </div>
+
+  <div class="field">
+    <%= form.number_field :user_id, id: :manually_created_game_user_id, class: "form-control", value: current_user.id, type: :hidden %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

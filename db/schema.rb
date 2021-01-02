@@ -10,40 +10,31 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_12_30_052850) do
+ActiveRecord::Schema.define(version: 2021_01_01_081029) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "gamedbs", force: :cascade do |t|
-    t.string "username"
-    t.string "password"
-    t.string "steamID"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.index ["user_id"], name: "index_gamedbs_on_user_id"
-  end
-
-  create_table "manually_added_games", force: :cascade do |t|
+  create_table "manually_created_games", force: :cascade do |t|
     t.integer "game_id"
-    t.integer "user_id"
     t.string "title"
     t.string "image"
     t.string "system"
-    t.string "released"
+    t.string "released_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_manually_created_games_on_user_id"
   end
 
   create_table "steam_games", force: :cascade do |t|
     t.integer "game_id"
-    t.integer "user_id"
     t.string "title"
     t.string "image"
-    t.string "system"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.index ["user_id"], name: "index_steam_games_on_user_id"
   end
 
   create_table "users", force: :cascade do |t|
