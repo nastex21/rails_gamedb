@@ -1,53 +1,63 @@
 <% @games.each do |game| %>
-<%= game.inspect %>
-<% end %>
-<% if user_signed_in? %>
-
-<table class="table table-hover table-striped">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col"><%= link_to "Game ID", :sort => "game_id"%></th>
-      <th scope="col">Image</th>
-      <th scope="col"><%= link_to "Title", :sort => "title"%></th>
-      <th scope="col"><%= link_to "System", :sort => "system"%></th>
-      <th scope="col"><%= link_to "Release Date", :sort => "released_date"%></th>
-      <th scope="col">User ID</th>
-      <th scope="col">Serivce</th>
-    </tr>
-  </thead>
-  <tbody>
-      <% @games.each do |game| %>
-    <tr>
-      <td>
-        <%= game.game_id %>
-      </td>
-      <td>
-        <%= game.image %>
-      </td>
-      <td>
-        <%= game.title %>
-      </td>
-      <td>
-        <%= game.system %>
-      </td>
-      <td>
-        <%= game.released_date %>
-      </td>
-      <td>
-        <%= game.user_id %>
-      </td>
-      <td>
-        <%= game.service %>
-      </td>
-    </tr>
+  <%= game.inspect %>
     <% end %>
-  </tbody>
-</table>
+      <% if user_signed_in? %>
 
-<% else %>
+        <table class="table table-hover table-striped">
+          <thead class="table-dark">
+            <tr>
+              <th scope="col">
+                <%= link_to "Game ID" , :sort=> "game_id"%>
+              </th>
+              <th scope="col">Image</th>
+              <th scope="col">
+                <%= link_to "Title" , :sort=> "title"%>
+              </th>
+              <th scope="col">
+                <%= link_to "System" , :sort=> "system"%>
+              </th>
+              <th scope="col">
+                <%= link_to "Release Date" , :sort=> "released_date"%>
+              </th>
+              <th scope="col">User ID</th>
+              <th scope="col">Serivce</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @games.each do |game| %>
+              <% if game.user == current_user %>
+                <tr>
+                  <td>
+                    <%= game.game_id %>
+                  </td>
+                  <td>
+                    <%= game.image %>
+                  </td>
+                  <td>
+                    <%= game.title %>
+                  </td>
+                  <td>
+                    <%= game.system %>
+                  </td>
+                  <td>
+                    <%= game.released_date %>
+                  </td>
+                  <td>
+                    <%= game.user_id %>
+                  </td>
+                  <td>
+                    <%= game.service %>
+                  </td>
+                </tr>
+                <% end %>
+                  <% end %>
+          </tbody>
+        </table>
 
-<h1>Hello World!</h1>
-This is my first Rails Webpage...
+        <% else %>
+
+          <h1>Hello World!</h1>
+          This is my first Rails Webpage...
 
 
-<% end %>
+          <% end %>
