@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_031213) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "service", default: "Manual", null: false, nil: false
+    t.string "service"
     t.index ["user_id"], name: "index_created_games_on_user_id"
   end
 
@@ -37,7 +37,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_031213) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "service", default: "Steam", null: false, nil: false
+    t.string "service"
     t.index ["user_id"], name: "index_steam_games_on_user_id"
   end
 
