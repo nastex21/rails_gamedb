@@ -1,6 +1,6 @@
-class CreateManuallyCreatedGames < ActiveRecord::Migration[6.0]
+class CreateCreatedGames < ActiveRecord::Migration[6.0]
   def change
-    create_table :manually_created_games do |t|
+    create_table :created_games do |t|
       t.integer :game_id
       t.string :title
       t.string :image

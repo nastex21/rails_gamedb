@@ -4,8 +4,12 @@ one:
   game_id: 1
   title: MyString
   image: MyString
+  system: MyString
+  released_date: MyString
 
 two:
   game_id: 1
   title: MyString
   image: MyString
+  system: MyString
+  released_date: MyString

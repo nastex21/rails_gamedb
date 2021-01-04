@@ -1,5 +1,5 @@
 Rails.application.routes.draw do
-  resources :manually_created_games
+  resources :created_games
   root 'home#index'
   resources :steam
   devise_for :users

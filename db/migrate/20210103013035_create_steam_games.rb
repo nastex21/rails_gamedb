@@ -4,6 +4,8 @@ class CreateSteamGames < ActiveRecord::Migration[6.0]
       t.integer :game_id
       t.string :title
       t.string :image
+      t.string :system
+      t.string :released_date
 
       t.timestamps
     end
