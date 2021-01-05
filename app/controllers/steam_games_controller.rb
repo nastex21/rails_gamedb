@@ -72,7 +72,7 @@ class SteamGamesController < ApplicationController
         private
           # Use callbacks to share common setup or constraints between actions.
           def set_steam_game
-            @steam_game = CreatedGame.find(params[:id])
+            @steam_game = SteamGame.find(params[:id])
           end
       
           # Only allow a list of trusted parameters through.
