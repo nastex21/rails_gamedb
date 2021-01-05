@@ -15,7 +15,7 @@
         <th scope="col">
           <%= link_to "Release Date" , :sort=> "released_date"%>
         </th>
-        <th scope="col">Serivce</th>
+        <th scope="col">Service</th>
         <th scope="col">Actions</th>
       </tr>
     </thead>
@@ -25,33 +25,30 @@
 
           <% if game.user==current_user %>
             <tr>
-
-              <td>
-                <%= link_to game.image, game %>
-              </td>
-              <td>
-                <%= link_to game.title, game %>
-              </td>
-              <td>
-                <%= game.system %>
-              </td>
-              <td>
-                <%= game.released_date %>
-              </td>
-
-              <td>
-                <%= game.service %>
-              </td>
-              <% if game.service=="Steam" %>
                 <td>
+                  <%= link_to game.image, game %>
                 </td>
+                <td>
+                  <%= link_to game.title, game %>
+                </td>
+                <td>
+                  <%= game.system %>
+                </td>
+                <td>
+                  <%= game.released_date %>
+                </td>
+  
+                <td>
+                  <%= game.service %>
+                </td>
+                <% if game.service == "Steam" %>
+                <td></td>
                 <% else %>
                   <td>
                     <%= link_to 'Delete' , game, method: :delete, data: { confirm: 'Are you sure?' },
                       class: "btn btn-outline-danger btn-sm" %>
                   </td>
                   <% end %>
-
             </tr>
             <% end %>
               <% end %>
