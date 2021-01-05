@@ -2,5 +2,6 @@
 
 <%= render 'form', created_game: @created_game %>
 
-<%= link_to 'Show', @created_game %> |
+<%= link_to 'Show', @created_game, class: "btn btn-secondary" %> 
+<%= link_to 'Delete', @created_game, method: :delete, data: { confirm: 'Are you sure?'}, class: "btn btn-danger" %> |
 <%= link_to 'Back', created_games_path %>

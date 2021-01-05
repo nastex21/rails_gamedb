@@ -11,10 +11,6 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= form.label :game_id %>
-    <%= form.number_field :game_id, required: true %>
-  </div>
 
   <div class="field">
     <%= form.label :title %>
@@ -41,9 +37,6 @@
     <%= form.text_field :service, required: true, :placeholder => 'Manual', value: 'Manual'  %>
   </div>
 
-  <div class="field">
-    <%= form.number_field :user_id, id: :friend_user_id, class: "form-control", value: current_user.id, type: :hidden %>
-  </div>
 
   <div class="actions">
     <%= form.submit %>
