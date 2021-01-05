@@ -10,12 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_01_04_031213) do
+ActiveRecord::Schema.define(version: 2021_01_05_221051) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "created_games", force: :cascade do |t|
+  create_table "created_games", id: :serial, force: :cascade do |t|
     t.integer "game_id"
     t.string "title"
     t.string "image"
@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 2021_01_04_031213) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "service"
+    t.string "service", default: "Manual"
     t.index ["user_id"], name: "index_created_games_on_user_id"
   end
 
@@ -32,12 +32,12 @@ ActiveRecord::Schema.define(version: 2021_01_04_031213) do
     t.integer "game_id"
     t.string "title"
     t.string "image"
-    t.string "system"
+    t.string "system", default: "PC"
     t.string "released_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
-    t.string "service"
+    t.string "service", default: "Steam"
     t.index ["user_id"], name: "index_steam_games_on_user_id"
   end
 

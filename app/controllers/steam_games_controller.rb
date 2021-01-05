@@ -2,6 +2,8 @@ class SteamGamesController < ApplicationController
         before_action :set_steam_game, only: [:show, :edit, :update, :destroy]
         before_action :authenticate_user!, except: [:index, :show]
         before_action :correct_user, only: [:edit, :update, :destroy]
+
+        
       
         # GET /steam_games
         # GET /steam_games.json
