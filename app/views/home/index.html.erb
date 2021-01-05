@@ -1,5 +1,6 @@
 <% if user_signed_in? %>
 
+
   <table class="table table-hover table-striped">
     <thead class="table-dark">
       <tr>
@@ -22,7 +23,7 @@
     </thead>
     <tbody>
       <% @games.each do |game| %>
-        <%= game.inspect %>
+        <%= current_user.id %>
 
           <% if game.user==current_user %>
             <tr>
