@@ -1,0 +1,2 @@
+class ApiplatformsController < ApplicationController
+end
