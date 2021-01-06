@@ -15,7 +15,7 @@ ActiveRecord::Schema.define(version: 2021_01_05_221051) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "created_games", id: :serial, force: :cascade do |t|
+  create_table "created_games", force: :cascade do |t|
     t.integer "game_id"
     t.string "title"
     t.string "image"

@@ -42,3 +42,4 @@ yarn-debug.log*
 yarn-debug.log*
 .yarn-integrity
 yarn.lock
+app/.env
