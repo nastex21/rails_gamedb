@@ -30,7 +30,7 @@ class ApiplatformsController < ApplicationController
             url,
             headers: {
             'X-RapidAPI-Host' => URI.parse(url).host,
-            'X-RapidAPI-Key' => ENV.fetch('RAPIDAPI_API_KEY')
+            'X-RapidAPI-Key' => ENV.fetch('RAPIDAPI_KEY')
             }
         )
 
