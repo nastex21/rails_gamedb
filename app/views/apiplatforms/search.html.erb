@@ -8,7 +8,8 @@
             <% if @results.any? %>
             <div>
               <% @results.each do |game| %>
-                <%= game["platforms"] %>
+              <%= game.inspect %>
+                <% game["name"] %>
               <% end %>
               <% else %>
                 <p>No results</p>
