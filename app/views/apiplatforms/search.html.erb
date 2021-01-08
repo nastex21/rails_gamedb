@@ -8,8 +8,12 @@
             <% if @results.any? %>
             <div>
               <% @results.each do |game| %>
-              <%= game.inspect %>
-                <% game["name"] %>
+              <% game.inspect %>
+                <%= game["id"] %>
+                <%= game["name"] %>
+                <%= game["released"] %>
+                <%= game["background_image"] %>
+                <%= game["metacritic"] %>
               <% end %>
               <% else %>
                 <p>No results</p>
