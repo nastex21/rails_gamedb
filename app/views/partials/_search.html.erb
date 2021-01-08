@@ -9,8 +9,8 @@
         <div class="mx-auto mt-5" style="width: 400px">
           <%= form_with(url: search_path, method: 'get', local: true) do %>
             <div class="form-group">
-              <%= label_tag :country, 'Search for a country '%>
-              <%= text_field_tag :country, nil, placeholder: 'Eg. Germany', class: 'form-control' %>
+              <%= label_tag :game, 'Search for a game '%>
+              <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
             </div>
   
             <%= button_tag 'Search', class: 'btn btn-success btn-block' %>
