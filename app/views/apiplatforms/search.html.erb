@@ -1,24 +1,24 @@
-  <!-- just using as template -->
-  <!-- app/views/thavel/search.html.erb -->
-  <div class="container">
-    <div class="row mt-5">
-      <div class="col-lg-6">
-        <h4>Game info</h4>
-        <table class="table">
-          <thead>
-            <tr>
-              <th scope="col"></th>
-              <th scope="col">Name</th>
-              <th scope="col">Release Date</th>
-              <th scope="col">Metacritic</th>
-            </tr>
-          </thead>
-          <tbody>
-            <% if @results.any? %>
-              <% @results.each do |game| %>
+<div class="container">
+  <div class="row mt-5">
+    <div class="col-lg-6">
+      <h4>Game info</h4>
+      <table class="table">
+        <thead>
+          <tr>
+            <th scope="col"></th>
+            <th scope="col">Name</th>
+            <th scope="col">Release Date</th>
+            <th scope="col">Platform(s)</th>
+            <th scope="col">Metacritic</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% if @results.any? %>
+            <% @results.each do |game| %>
+
               <tr>
                 <td>
-                  <%= image_tag(game["background_image"], size: "50x50", alt:"Screenshot of video game") %>
+                  <%= image_tag(game["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
                 </td>
                 <td>
                   <%= game["name"] %>
@@ -27,15 +27,25 @@
                   <%= game["released"] %>
                 </td>
                 <td>
+                  <% game["platforms"].each_with_index do |x, index| %>
+                  <% len = game["platforms"].length %>
+                    <% if index + 1==len %>
+                      <%= x["platform"]["name"] %>
+                        <% else %>
+                          <%= x["platform"]["name"] + " | " %>
+                            <% end %>
+                              <% end %>
+                </td>
+                <td>
                   <%= game["metacritic"] %>
                 </td>
               </tr>
               <% end %>
-              <% else %>
-                <p>No results</p>
-              <% end %>
-          </tbody>
-        </table>
-      </div>
+                <% else %>
+                  <p>No results</p>
+                  <% end %>
+        </tbody>
+      </table>
     </div>
   </div>
+</div>
