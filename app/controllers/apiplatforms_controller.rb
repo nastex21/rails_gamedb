@@ -4,9 +4,10 @@ class ApiplatformsController < ApplicationController
     end
     
     def search
+
         findings = find_game(params[:game])
         @results = findings["results"]
-    
+
         unless @results
             flash[:alert] = 'Sorry, game not found'
             return render action: :index
@@ -32,6 +33,7 @@ class ApiplatformsController < ApplicationController
     end
 
     def find_game(name)
+        puts name
         url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&page_size=10"
         request_api(url)
     end
