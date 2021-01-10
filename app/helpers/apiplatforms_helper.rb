@@ -1,3 +1,0 @@
-module ApiplatformsHelper
-
-end
