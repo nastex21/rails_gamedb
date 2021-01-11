@@ -1,8 +1,17 @@
 <% if user_signed_in? %>
 
+<ul>
+  <% @games.each do |tutorial| %>
+    <li><%= tutorial %> <%= link_to "Hide", "", class: 'hide', data: {'js-hide-link' => true} %></li>
+  <% end %>
+</ul>
+
   <%= render "/partials/search"  %>
 
-  <%= @search %>
+  <% if instance_variable_defined?("@games") && @games.present? %>
+  <%= "Hello!" %>
+  <% end %>
+
 
   <table class="table table-hover table-striped">
     <thead class="table-dark">

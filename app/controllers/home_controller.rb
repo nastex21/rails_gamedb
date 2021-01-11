@@ -11,15 +11,13 @@ class HomeController < ApplicationController
         @results = @search["results"]
         @results = JSON.parse(@search)
     
-    puts @results
-
         unless @results
             flash[:alert] = 'Sorry, game not found'
             return render action: :index
         end
     end
   end
-
+    
 private
 
 def request_api(url)
