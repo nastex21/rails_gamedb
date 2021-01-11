@@ -1,12 +1,17 @@
 class HomeController < ApplicationController
+
   def index
     steam_games = SteamGame.all
     created_games = CreatedGame.all
     @games = steam_games + created_games
 
     @search = find_game(params[:game])
-    if instance_variable_defined?("@search") && @search.present?
+
+    if @search.present?
         @results = @search["results"]
+        @results = JSON.parse(@search)
+    
+    puts @results
 
         unless @results
             flash[:alert] = 'Sorry, game not found'
@@ -29,7 +34,7 @@ def request_api(url)
 return nil if response.status != 200
 
 
-JSON.parse(response.body)
+return response.body
 end
 
 def find_game(name)

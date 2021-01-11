@@ -9,7 +9,7 @@
                 <% end %>
 
                 <div class="mx-auto mt-5" style="width: 400px">
-                    <%= form_with(model: @search, url: root_path, method: 'get') do %>
+                    <%= form_with(format: :json, url: root_path, method: 'get') do %>
                       <div class="form-group">
                         <%= label_tag :game, 'Search for a game '%>
                         <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
@@ -21,55 +21,4 @@
 
         </div>
     </div>
-        <% if instance_variable_defined?("@results") %>
-
-        <div class="container">
-            <div class="row mt-5">
-              <div class="col-lg-6">
-                <h4>Game info</h4>
-                <table class="table">
-                  <thead>
-                    <tr>
-                      <th scope="col"></th>
-                      <th scope="col">Name</th>
-                      <th scope="col">Release Date</th>
-                      <th scope="col">Platform(s)</th>
-                      <th scope="col">Metacritic</th>
-                    </tr>
-                  </thead>
-                  <tbody>
-                      <% @results.each do |game| %>
-                        <tr>
-                          <td>
-                            <%= image_tag(game["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
-                          </td>
-                          <td>
-                            <%= game["name"] %>
-                          </td>
-                          <td>
-                            <%= game["released"] %>
-                          </td>
-                          <td>
-                            <% game["platforms"].each_with_index do |x, index| %>
-                            <% len = game["platforms"].length %>
-                              <% if index + 1==len %>
-                                <%= x["platform"]["name"] %>
-                                  <% else %>
-                                    <%= x["platform"]["name"] + " | " %>
-                                      <% end %>
-                                        <% end %>
-                          </td>
-                          <td>
-                            <%= game["metacritic"] %>
-                          </td>
-                        </tr>
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
-          <% end %>
-          <% else %>
-          <p>No results</p>
-          <% end %>
-    </div>
+       
