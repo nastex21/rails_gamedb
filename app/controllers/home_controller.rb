@@ -21,13 +21,16 @@ class HomeController < ApplicationController
 private
 
 def request_api(url)
-    response = Excon.get(
-        url,
-        :headers => {
-        'X-RapidAPI-Host' => URI.parse(url).host,
-        'X-RapidAPI-Key' => ENV['RAPID_KEY']
-        }
-    )
+Rails.ajax({
+  url: url,
+  type: "get",
+  data: "",
+  success: function(data) {
+      puts data
+  },
+  error: function(data) {}
+})
+
 
 return nil if response.status != 200
 

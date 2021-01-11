@@ -1,6 +1,10 @@
 <% if user_signed_in? %>
 
-<ul>
+<%= javascript_pack_tag 'user_greeting' %>
+
+<button id="greet-user-button">Hey!</button>
+
+<ul class="test">
   <% @games.each do |tutorial| %>
     <li><%= tutorial %> <%= link_to "Hide", "", class: 'hide', data: {'js-hide-link' => true} %></li>
   <% end %>
