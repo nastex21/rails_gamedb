@@ -24,6 +24,7 @@ document.addEventListener("click", function (ev) {
         
         $.ajax(settings).done(function (response) {
             console.log(response);
+            $('#results').html(response.count);
         });
     }
 })
