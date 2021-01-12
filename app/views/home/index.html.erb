@@ -1,80 +1,70 @@
 <% if user_signed_in? %>
 
-<%= javascript_pack_tag 'user_greeting' %>
+    <%= render "/partials/search" %>
 
-<button id="greet-user-button">Hey!</button>
-
-<ul class="test">
-  <% @games.each do |tutorial| %>
-    <li><%= tutorial %> <%= link_to "Hide", "", class: 'hide', data: {'js-hide-link' => true} %></li>
-  <% end %>
-</ul>
-
-  <%= render "/partials/search"  %>
-
-  <% if instance_variable_defined?("@games") && @games.present? %>
-  <%= "Hello!" %>
-  <% end %>
+      <% if instance_variable_defined?("@games") && @games.present? %>
+        <%= "Hello!" %>
+          <% end %>
 
 
-  <table class="table table-hover table-striped">
-    <thead class="table-dark">
-      <tr>
+            <table class="table table-hover table-striped">
+              <thead class="table-dark">
+                <tr>
 
-        <th scope="col">Image</th>
-        <th scope="col">
-          <%= link_to "Title" , :sort=> "title"%>
-        </th>
-        <th scope="col">
-          <%= link_to "System" , :sort=> "system"%>
-        </th>
-        <th scope="col">
-          <%= link_to "Release Date" , :sort=> "released_date"%>
-        </th>
-        <th scope="col">Service</th>
-        <th scope="col">Actions</th>
-      </tr>
-    </thead>
-    <tbody>
-      <% @games.each do |game| %>
-        <%= current_user.id %>
+                  <th scope="col">Image</th>
+                  <th scope="col">
+                    <%= link_to "Title" , :sort=> "title"%>
+                  </th>
+                  <th scope="col">
+                    <%= link_to "System" , :sort=> "system"%>
+                  </th>
+                  <th scope="col">
+                    <%= link_to "Release Date" , :sort=> "released_date"%>
+                  </th>
+                  <th scope="col">Service</th>
+                  <th scope="col">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                <% @games.each do |game| %>
+                  <%= current_user.id %>
 
-          <% if game.user==current_user %>
-            <tr>
-                <td>
-                  <%= link_to game.image, game %>
-                </td>
-                <td>
-                  <%= link_to game.title, game %>
-                </td>
-                <td>
-                  <%= game.system %>
-                </td>
-                <td>
-                  <%= game.released_date %>
-                </td>
-  
-                <td>
-                  <%= game.service %>
-                </td>
-                <% if game.service == "Steam" %>
-                <td></td>
-                <% else %>
-                  <td>
-                    <%= link_to 'Delete' , game, method: :delete, data: { confirm: 'Are you sure?' },
-                      class: "btn btn-outline-danger btn-sm" %>
-                  </td>
-                  <% end %>
-            </tr>
-            <% end %>
+                    <% if game.user==current_user %>
+                      <tr>
+                        <td>
+                          <%= link_to game.image, game %>
+                        </td>
+                        <td>
+                          <%= link_to game.title, game %>
+                        </td>
+                        <td>
+                          <%= game.system %>
+                        </td>
+                        <td>
+                          <%= game.released_date %>
+                        </td>
+
+                        <td>
+                          <%= game.service %>
+                        </td>
+                        <% if game.service=="Steam" %>
+                          <td></td>
+                          <% else %>
+                            <td>
+                              <%= link_to 'Delete' , game, method: :delete, data: { confirm: 'Are you sure?' },
+                                class: "btn btn-outline-danger btn-sm" %>
+                            </td>
+                            <% end %>
+                      </tr>
+                      <% end %>
+                        <% end %>
+              </tbody>
+            </table>
+
+            <% else %>
+
+              <h1>Hello World!</h1>
+              This is my first Rails Webpage...
+
+
               <% end %>
-    </tbody>
-  </table>
-
-  <% else %>
-
-    <h1>Hello World!</h1>
-    This is my first Rails Webpage...
-
-
-    <% end %>

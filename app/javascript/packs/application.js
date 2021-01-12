@@ -16,12 +16,3 @@ require("jquery-ui");
 //
 // const images = require.context('../images', true)
 // const imagePath = (name) => images(name, true)
-
-$(document).ready(function() {
-  console.log("hello?");
-    $('[data-js-hide-link]').click(function(event){
-      alert('You clicked the Hide link');
-      event.preventDefault(); 
-    });
-
-  });
