@@ -1,7 +1,14 @@
 document.addEventListener("click", function (ev) {
-
-    var url = "https://rawg-video-games-database.p.rapidapi.com/games?search=Mario&page_size=10";
+        
     if (ev.target.id == "get_games_button") {
+
+        const form = document.querySelector('#search_games');
+        const data = Object.fromEntries(new FormData(form).entries());
+
+        var url = `https://rawg-video-games-database.p.rapidapi.com/games?search=${data.game}&page_size=10`;
+
+        console.log(url);
+
         const settings = {
             "async": true,
             "crossDomain": true,

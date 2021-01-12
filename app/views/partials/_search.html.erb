@@ -11,7 +11,7 @@
                 <% end %>
                 
                 <div class="mx-auto mt-5" style="width: 400px">
-                    <%= form_with url: root_path, method: 'get', remote: true do |f| %>
+                    <%= form_with url: root_path, method: 'get', remote: true, id: 'search_games' do |f| %>
                         <div class="form-group">
                             <%= f.label :game, 'Search for a game' %>
                             <%= f.text_field :game %>
