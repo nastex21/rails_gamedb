@@ -1,1 +1,3 @@
-console.log('name = <%= escape_javascript @results %>');
+console.log('name = <%= @results %>');
+
+document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/results') %>") ;
