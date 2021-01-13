@@ -8,9 +8,9 @@ class HomeController < ApplicationController
     @search = find_game(params[:game])
 
     if @search.present?
-        @results = @search["results"]
-        @results = JSON.parse(@search)
-    
+        results = JSON.parse(@search)
+        @results = results["results"]
+
         respond_to do |format|
           format.html { render(:text => "not implemented") }
           format.js

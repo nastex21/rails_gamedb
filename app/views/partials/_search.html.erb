@@ -9,7 +9,7 @@
                 <% end %>
 
                 <div class="mx-auto mt-5" style="width: 400px">
-                    <%= form_with(format: :json, url: root_path, method: 'get') do %>
+                    <%= form_with(format: :json, url: root_path, method: 'get', id: "game_search") do %>
                       <div class="form-group">
                         <%= label_tag :game, 'Search for a game '%>
                         <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
