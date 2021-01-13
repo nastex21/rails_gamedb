@@ -3,6 +3,7 @@ class HomeController < ApplicationController
   def index
     steam_games = SteamGame.all
     created_games = CreatedGame.all
+
     @games = steam_games + created_games
 
     @search = find_game(params[:game])
@@ -26,6 +27,7 @@ class HomeController < ApplicationController
 private
 
 def request_api(url)
+  puts url
     response = Excon.get(
         url,
         :headers => {
@@ -46,6 +48,5 @@ def find_game(name)
         request_api(url)
     end
 end
-  
 
 end
