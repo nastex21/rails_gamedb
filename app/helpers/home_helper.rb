@@ -1,6 +1,7 @@
 module HomeHelper
     def platform_list
     [
+{},
 {"id" => "4", "slug" => "pc", "name" => "PC"},
 {"id" => "187", "slug" => "playstation5", "name" => "PlayStation 5"},
 {"id" => "18", "slug" => "playstation4", "name" => "PlayStation 4"},
@@ -53,5 +54,64 @@ module HomeHelper
 {"id" => "12", "slug" => "neogeo", "name" => "Neo Geo"},
 {"id" => "171", "slug" => "web", "name" => "Web"}
     ]
+    end
+
+    def store_list
+        [
+            {},
+            {
+                "id" =>  1,
+                "name" =>  "Steam",
+                "slug" =>  "steam"
+            },
+         
+            {
+                "id" =>  3,
+                "name" =>  "PlayStation Store",
+                "slug" =>  "playstation-store"
+            },
+              
+            {
+                "id" =>  2,
+                "name" =>  "Xbox Store",
+                "slug" =>  "xbox-store"
+            },
+    
+            {
+                "id" =>  4,
+                "name" =>  "App Store",
+                "slug" =>  "apple-appstore"
+            },
+            {
+                "id" =>  5,
+                "name" =>  "GOG",
+                "slug" =>  "gog"
+            },
+            {
+                "id" =>  6,
+                "name" =>  "Nintendo Store",
+                "slug" =>  "nintendo"
+            },
+            {
+                "id" =>  7,
+                "name" =>  "Xbox 360 Store",
+                "slug" =>  "xbox360"
+            },
+            {
+                "id" =>  8,
+                "name" =>  "Google Play",
+                "slug" =>  "google-play"
+            },
+            {
+                "id" =>  9,
+                "name" =>  "itch.io",
+                "slug" =>  "itch"
+            },
+            {
+                "id" =>  11,
+                "name" =>  "Epic Games",
+                "slug" =>  "epic-games"
+            }
+        ]
     end
 end
