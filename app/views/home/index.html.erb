@@ -1,17 +1,7 @@
 <% if user_signed_in? %>
 
     <%= render "/partials/search" %>
-    <p>{<p>
-      <% @results_platforms.each do |platform| %>
-      <p>[</p>
-      <span>"id" =>  "<%= platform["id"] %>", </span>
-      <span>"slug" => "<%= platform["slug"] %>", </span>
-      <span>"name" => "<%= platform["name"] %>"</span>
-      <p>], </p>
-      <br />
-      <% end %>
-    <p>}</p>}
-
+  
     <div id="results"></div>
     <div id="error_explanation"></div>
 

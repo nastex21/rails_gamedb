@@ -1,7 +1,6 @@
 <div class="container">
     <div class="row">
         <div class="col-lg-12 mt-5">
-
             <% if flash[:alert] %>
                 <div class="alert alert-warning">
                     <%= flash[:alert] %>
@@ -13,7 +12,8 @@
                       <div class="form-group">
                         <%= label_tag :game, 'Search for a game '%>
                         <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
-                      </div>
+                        <%= select_tag platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']] }) %>
+                    </div>
             
                       <%= button_tag 'Search', class: 'btn btn-success btn-block' %>
                     <% end %>
