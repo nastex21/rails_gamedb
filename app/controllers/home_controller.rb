@@ -6,7 +6,8 @@ class HomeController < ApplicationController
 
     @games = steam_games + created_games
 
-    @search = find_game(params[:game])
+    @search = find_game(params[:game], params[:platform_list])
+    puts @search
 
     if @search.present?
         results = JSON.parse(@search)
@@ -42,9 +43,9 @@ return nil if response.status != 200
 return response.body
 end
 
-def find_game(name)
+def find_game(name, platform)
     if name.present?
-        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&page_size=10"
+        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&platforms=#{CGI.escape(platform)}&page_size=10"
         request_api(url)
     end
 end

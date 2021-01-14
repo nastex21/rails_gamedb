@@ -12,7 +12,7 @@
                       <div class="form-group">
                         <%= label_tag :game, 'Search for a game '%>
                         <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
-                        <%= select_tag platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']] }) %>
+                        <%= select_tag :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']] }) %>
                     </div>
             
                       <%= button_tag 'Search', class: 'btn btn-success btn-block' %>
