@@ -4,13 +4,13 @@
         <div class="col-12 col-md-4">
           <%= f.text_field :game, hide_label: true, placeholder: 'Search For Games' , inline: true %>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col-12 col-md-4">
           <%= f.select :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']]}),{include_blank: 'Select Platform' }, inline: true %>
         </div>
         <div class="col-12 col-md-3">
           <%= f.select :store_list, options_for_select(store_list.map { |obj| [obj['name'], obj['id']] }), {include_blank: 'Select Game Store' }, inline: true %>
         </div>
-        <div class="col-12 col-md-2">
+        <div class="col-12 col-md">
           <%= f.button 'Search' , class: 'btn btn-success btn-block' %>
         </div>
       </div>
