@@ -7,52 +7,56 @@ class HomeController < ApplicationController
     @games = steam_games + created_games
 
     @search = find_game(params[:game], params[:platform_list], params[:store_list])
-
-    if @search.present?
-        results = JSON.parse(@search)
-        @results = results["results"]
-
-        puts @results
-
-        respond_to do |format|
-          format.html { render(:text => "not implemented") }
-          format.js
-        end
-
-        unless @results
-            flash[:alert] = 'Sorry, game not found'
-            return render action: :index
-        end
-    end
   end
 
 private
 
-def request_api(url)
-  puts url
-    response = Excon.get(
-        url,
-        :headers => {
-        'X-RapidAPI-Host' => URI.parse(url).host,
-        'X-RapidAPI-Key' => ENV['RAPID_KEY']
-        }
-    )
+  def request_api(url)
+      puts 'inside request_api'
+      puts url
+        response = Excon.get(
+            url,
+            :headers => {
+            'X-RapidAPI-Host' => URI.parse(url).host,
+            'X-RapidAPI-Key' => ENV['RAPID_KEY']
+            }
+        )
 
-return nil if response.status != 200
-
-
-return response.body
-end
-
-def find_game(name, platform, store)
-
-    if name.present? && platform.blank?
-        url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&page_size=10"
-        puts url
-        request_api(url)
-    end
+      return nil if response.status != 200
 
 
-end
+      return make_game_list(response.body)
+   end
 
+  def find_game(name, platform, store)
+
+      if name.present? && platform.blank? && store.blank?
+          puts 'inside first conditional'
+          url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&page_size=10"
+          request_api(url)
+      elsif name.present? && platform.present? && store.blank?
+          puts 'inside second conditional'
+          url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&platforms=#{CGI.escape(platform)}&page_size=10"
+          request_api(url)
+      elsif name.present? && store.present? 
+          url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&stores=#{CGI.escape(store)}&page_size=10"
+          request_api(url)
+      elsif name.blank? && store.present? || name.blank? && platform.present?
+          flash[:alert] = 'Please enter name of game'
+          return render action: :index
+      end 
+
+  end
+
+  def make_game_list(games)
+      results = JSON.parse(games)
+      @results = results["results"]
+      
+
+      respond_to do |format|
+        format.html { render(:text => "not implemented") }
+        format.js
+      end
+
+  end
 end

@@ -12,8 +12,8 @@
                       <div class="form-group">
                         <%= label_tag :game, 'Search for a game '%>
                         <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
-                        <%= select_tag :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']] }) %>
-                        <%= select_tag :store_list, options_for_select(store_list.map { |obj| [obj['name'], obj['id']] }) %>
+                        <%= select_tag :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']] }),{include_blank: 'Select Platform'} %>
+                        <%= select_tag :store_list,  options_for_select(store_list.map { |obj| [obj['name'], obj['id']] }), {include_blank: 'Select Game Store'} %>
 
                     </div>
             

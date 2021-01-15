@@ -1,7 +1,6 @@
 module HomeHelper
     def platform_list
     [
-{},
 {"id" => "4", "slug" => "pc", "name" => "PC"},
 {"id" => "187", "slug" => "playstation5", "name" => "PlayStation 5"},
 {"id" => "18", "slug" => "playstation4", "name" => "PlayStation 4"},
@@ -58,7 +57,6 @@ module HomeHelper
 
     def store_list
         [
-            {},
             {
                 "id" =>  1,
                 "name" =>  "Steam",
