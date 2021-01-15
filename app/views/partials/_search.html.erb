@@ -11,7 +11,7 @@
           <%= f.select :store_list, options_for_select(store_list.map { |obj| [obj['name'], obj['id']] }), {include_blank: 'Select Game Store' }, inline: true %>
         </div>
         <div class="col-12 col-md-2">
-          <%= f.button 'Search' , class: 'btn btn-success btn-block w-100' %>
+          <%= f.button 'Search' , class: 'btn btn-success btn-block' %>
         </div>
       </div>
       <% end %>
