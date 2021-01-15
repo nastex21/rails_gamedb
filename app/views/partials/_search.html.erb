@@ -7,9 +7,9 @@
                 </div>
                 <% end %>
 
-                <div class="mx-auto mt-5" style="width: 400px">
-                    <%= form_with(format: :json, url: root_path, method: 'get', id: "game_search") do %>
-                      <div class="form-group">
+                <div class="mx-auto mt-5 w-100" >
+                    <%= form_with( format: :json, url: root_path, method: 'get', id: "game_search", html: { class: “form-inline” }) do %>
+                      <div class="form-inline">
                         <%= label_tag :game, 'Search for a game '%>
                         <%= text_field_tag :game, nil, placeholder: 'Eg. Super Mario', class: 'form-control' %>
                         <%= select_tag :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']] }),{include_blank: 'Select Platform'} %>
