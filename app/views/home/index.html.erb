@@ -25,6 +25,8 @@
               </thead>
               <tbody>
                 <% @games.each do |game| %>
+                  <%= current_user.id %>
+
                     <% if game.user==current_user %>
                       <tr>
                         <td>

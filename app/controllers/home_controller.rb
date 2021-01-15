@@ -11,7 +11,7 @@ class HomeController < ApplicationController
 
 private
 
-  def request_api(url)
+  def request_api(url, num)
       puts 'inside request_api'
       puts url
         response = Excon.get(
@@ -25,7 +25,7 @@ private
       return nil if response.status != 200
 
 
-      return make_game_list(response.body)
+      return make_game_list(response.body, num)
    end
 
   def find_game(name, platform, store)
@@ -33,14 +33,14 @@ private
       if name.present? && platform.blank? && store.blank?
           puts 'inside first conditional'
           url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&page_size=10"
-          @games = request_api(url)
+          request_api(url, 1)
       elsif name.present? && platform.present? && store.blank?
           puts 'inside second conditional'
           url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&platforms=#{CGI.escape(platform)}&page_size=10"
-          @platform_games = request_api(url)
+          request_api(url, 2)
       elsif name.present? && store.present? 
           url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&stores=#{CGI.escape(store)}&page_size=10"
-          @store_games = request_api(url)
+          request_api(url, 3)
       elsif name.blank? && store.present? || name.blank? && platform.present?
           flash[:alert] = 'Please enter name of game'
           return render action: :index
@@ -48,10 +48,17 @@ private
 
   end
 
-  def make_game_list(games)
+  def make_game_list(games, num)
       results = JSON.parse(games)
       @results = results["results"]
       
+      if num == 1 
+        @search_method = 'name'
+      elsif num == 2 
+        @search_method = 'platform'
+      elsif num == 3
+        @search_method = 'store'
+      end
 
       respond_to do |format|
         format.html { render(:text => "not implemented") }

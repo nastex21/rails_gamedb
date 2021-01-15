@@ -8,16 +8,7 @@
         </tr>
     </thead>
     <tbody>
-                <% if @games.present? %>
-                <%= GAMES %>
-                <% elsif @platform_games.present? %>
-                <%= Platform Games %>
-                <% elsif @store_games.present? %>
-                <%= Store Games %>
-                <% else %>
-                <%= none %>
-                <% end %>
-
+        <%= @search_method %>
         <% @results.each do |item| %>
                     <tr>
                         <td>
