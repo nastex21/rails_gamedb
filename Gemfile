@@ -20,6 +20,10 @@ gem 'turbolinks', '~> 5'
 gem 'jbuilder', '~> 2.7'
 gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'excon', '~> 0.78.1'
+gem 'bootstrap', '~> 5.0.0.beta1'
+gem 'jquery-rails'
+gem 'bootstrap_form', '~> 4.5'
+
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
