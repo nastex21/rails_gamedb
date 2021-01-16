@@ -1,23 +1,56 @@
-<% if @search_method == 'name' %>
-    <%= 'name' %>
-<% elsif @search_method == 'platform' %>
-    <%= 'platform' %>
-<% elsif @search_method == 'store' %>
-    <%= 'store' %>
-<% else %>
-    <%= 'ERROR' %>
-<% end %>
-
-
 <table class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
             <th scope="col">Image</th>
             <th scope="col">Title</th>
             <th scope="col">Release Date</th>
+            <th scope="col">Platform(s)</th>
+            <th scope="col">Store(s)</th>
         </tr>
     </thead>
     <tbody>
-   
-    </tbody>
+
+<% if @search_method == 'name' %>
+    <% @results.each do |item| %>
+        <@= results @>
+                <tr>
+                    <td>
+                        <%= image_tag(item["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
+                    </td>
+                    <td>
+                        <%= item["name"] %>
+                    </td>
+                    <td>
+                        <%= item["released"] %>
+                    </td>
+                    <td>
+                        <% item["platforms"].each_with_index do |x, index| %>
+                             <% len = item["platforms"].length %>
+                             <% if index + 1 == len %>
+                                 <%= x["platform"]["name"] %>
+                              <% else %>
+                                <%= x["platform"]["name"] + " | " %>
+                            <% end %>
+                         <% end %>
+                    </td>
+                    <td>
+                        <% item["stores"].each_with_index do |x, index| %>
+                        <% len = item["stores"].length %>
+                            <% if index + 1 == len %>
+                                <%= x["stores"]["name"] %>
+                            <% else %>
+                            <%= x["stores"]["name"] + " | " %>
+                            <% end %>
+                        <% end %>
+                    </td>
+                </tr>
+    <% end %>
+<% elsif @search_method == 'platform' %>
+    <%= @results %>
+<% elsif @search_method == 'store' %>
+    <%= 'store' %>
+<% else %>
+    <%= 'ERROR' %>
+<% end %>
+</tbody>
 </table>
