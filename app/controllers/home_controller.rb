@@ -38,10 +38,13 @@ private
           puts 'inside second conditional'
           url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&platforms=#{CGI.escape(platform)}&page_size=10"
           request_api(url, 2)
-      elsif name.present? && store.present? 
+      elsif name.present? && platform.blank? && store.present? 
           url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&stores=#{CGI.escape(store)}&page_size=10"
           request_api(url, 3)
-      elsif name.blank? && store.present? || name.blank? && platform.present?
+      elsif name.present? && platform.present? && store.present?
+          url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&platforms=#{CGI.escape(platform)}&stores=#{CGI.escape(store)}&page_size=10"
+          request_api(url, 4)
+      elsif name.blank?
           flash[:alert] = 'Please enter name of game'
           return render action: :index
       end 
