@@ -1,3 +1,13 @@
+<% if @search_method == 'name' %>
+    <%= 'name' %>
+<% elsif @search_method == 'platform' %>
+    <%= 'platform' %>
+<% elsif @search_method == 'store' %>
+    <%= 'store' %>
+<% else %>
+    <%= 'ERROR' %>
+<% end %>
+
 
 <table class="table table-hover table-striped">
     <thead class="table-dark">
@@ -8,19 +18,6 @@
         </tr>
     </thead>
     <tbody>
-        <%= @search_method %>
-        <% @results.each do |item| %>
-                    <tr>
-                        <td>
-                            <%= image_tag(item["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
-                        </td>
-                        <td>
-                            <%= item["name"] %>
-                        </td>
-                        <td>
-                            <%= item["released"] %>
-                        </td>
-                    </tr>
-        <% end %>
+   
     </tbody>
 </table>
