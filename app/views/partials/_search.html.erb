@@ -1,16 +1,16 @@
   <div class="row">
     <%= bootstrap_form_with(format: :json, url: root_path, method: 'get' , id: 'game-search' ) do |f| %>
       <div class="input-group">
-        <div class="col-12 col-md-4">
-          <%= f.text_field :game, hide_label: true, placeholder: 'Search For Games' , inline: true %>
+        <div class="col">
+          <%= f.text_field :game,  placeholder: 'Search For Games' , inline: true %>
         </div>
-        <div class="col-12 col-md-4">
+        <div class="col">
           <%= f.select :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']]}),{include_blank: 'Select Platform' }, inline: true %>
         </div>
-        <div class="col-12 col-md-3">
+        <div class="col">
           <%= f.select :store_list, options_for_select(store_list.map { |obj| [obj['name'], obj['id']] }), {include_blank: 'Select Game Store' }, inline: true %>
         </div>
-        <div class="col-12 col-md">
+        <div class="col-2">
           <%= f.button 'Search' , class: 'btn btn-success btn-block' %>
         </div>
       </div>
