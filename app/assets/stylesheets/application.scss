@@ -4,41 +4,26 @@
     width: 100vw;
 }
 
+.form-group > label {
+    display: none;
+}
+
+#game, #platform_list, #store_list {
+    width: 100%;
+}
+
+
 @media only screen and (min-width: 768px) {
 
 /* Game search input bars */
-.form-group > .form-control {
-    width: 90%;
-}
 
-.input-group {
-    position: relative;
-}
-
-
-/*Game search button */
-
-.input-group > .col-md > .btn {
-    position: absolute !important;                  
-    bottom: 0;                          
-    right: 0; 
-    width: 70px;
-    height: 40px;
-}
 
 }
-
-@media only screen and (min-width: 1079px){
+@media only screen and (min-width: 1280px){
 
     /*Game search input bars */
-
-    .form-group > .form-control {
-        width: 85%;
+    #game, #platform_list, #store_list {
+        width: 300px;
     }
-
-    /*Game search button */
-    .input-group > .col-md > .btn {
-        width: 100px;
-        height: 40px;
-    }    
+    
 }
