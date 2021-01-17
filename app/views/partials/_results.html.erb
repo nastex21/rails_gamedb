@@ -21,14 +21,20 @@
                         <%= item["released"] %>
                     </td>
                     <td>
-                        <% item["platforms"].each_with_index do |x, index| %>
-                             <% len = item["platforms"].length %>
-                             <% if index + 1 == len %>
-                                 <%= x["platform"]["name"] %>
-                              <% else %>
-                                <%= x["platform"]["name"] + " | " %>
+                            <% len = item["platforms"].length %>
+                            <% if len == 1 %>
+                                <%= item["platforms"][0]["platform"]["name"] %>
+                            <% elsif len > 1 %>
+                                <select>
+                                <% item["platforms"].each do |systems| %>
+                                    <option>
+                                        <%= systems["platform"]["name"] %>
+                                    </option>
+                                <% end %>
+                                </select>
+                            <% else %>
+                                <%= null %>
                             <% end %>
-                         <% end %>
                     </td>
        
                     <td>
@@ -36,7 +42,8 @@
                             <% item["stores"].each_with_index do |x, index| %>
                                 <% len = item["stores"].length %>
                                 <% if index + 1 == len %>
-                                    <%= x["store"]["name"] %>
+                          
+                                <%= x["store"]["name"] %>
                                 <% else %>
                                     <%= x["store"]["name"] + " | " %>
                                 <% end %>
