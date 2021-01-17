@@ -25,9 +25,9 @@
                             <% if len == 1 %>
                                 <%= item["platforms"][0]["platform"]["name"] %>
                             <% elsif len > 1 %>
-                                <select>
+                                <select class="form-control selectpicker" multiple>
                                 <% item["platforms"].each do |systems| %>
-                                    <option>
+                                    <option> 
                                         <%= systems["platform"]["name"] %>
                                     </option>
                                 <% end %>
@@ -43,7 +43,7 @@
                             <% if len == 1 %>
                                 <%= item["stores"][0]["store"]["name"] %>
                             <% elsif len > 1 %>
-                                <select>
+                                <select class="form-control selectpicker" multiple>
                                 <% item["stores"].each do |store| %>
                                     <option>
                                         <%= store["store"]["name"] %>
