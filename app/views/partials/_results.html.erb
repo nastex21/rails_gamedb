@@ -1,6 +1,7 @@
 <table class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
+            <th scope="col">Select</th>
             <th scope="col">Images</th>
             <th scope="col">Titles</th>
             <th scope="col">Release Dates</th>
@@ -9,51 +10,60 @@
         </tr>
     </thead>
     <tbody>
-    <% @results.each do |item| %>
-                <tr>
-                    <td>
-                        <%= image_tag(item["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
-                    </td>
-                    <td>
-                        <%= item["name"] %>
-                    </td>
-                    <td>
-                        <%= item["released"] %>
-                    </td>
-                    <td>
-                            <% len = item["platforms"].length %>
-                            <% if len == 1 %>
-                                <%= item["platforms"][0]["platform"]["name"] %>
-                            <% elsif len > 1 %>
-                                <select class="form-control selectpicker" multiple title='Choose Platform(s)'>
-                                <% item["platforms"].each do |systems| %>
-                                    <option> 
-                                        <%= systems["platform"]["name"] %>
-                                    </option>
-                                <% end %>
-                                </select>
-                            <% else %>
-                                <%= null %>
-                            <% end %>
-                    </td>
-       
-                    <td>
-                        <% unless item["stores"].blank?%>
-                            <% len = item["stores"].length %>
-                            <% if len == 1 %>
+        <% @results.each do |item| %>
+            <tr>
+                <td>
+                    <div class="input-group mb-3">
+                        <div class="input-group-prepend">
+                            <div class="input-group-text">
+                                <input type="checkbox" aria-label="Checkbox for following text input">
+                            </div>
+                        </div>
+                    </div>
+                </td>
+                <td>
+                    <%= image_tag(item["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
+                </td>
+                <td>
+                    <%= item["name"] %>
+                </td>
+                <td>
+                    <%= item["released"] %>
+                </td>
+                <td>
+                    <% len=item["platforms"].length %>
+                        <% if len==1 %>
+                            <%= item["platforms"][0]["platform"]["name"] %>
+                                <% elsif len> 1 %>
+                                    <select class="form-control selectpicker" multiple title='Choose Platform(s)'>
+                                        <% item["platforms"].each do |systems| %>
+                                            <option>
+                                                <%= systems["platform"]["name"] %>
+                                            </option>
+                                            <% end %>
+                                    </select>
+                                    <% else %>
+                                        <%= null %>
+                                            <% end %>
+                </td>
+
+                <td>
+                    <% unless item["stores"].blank?%>
+                        <% len=item["stores"].length %>
+                            <% if len==1 %>
                                 <%= item["stores"][0]["store"]["name"] %>
-                            <% elsif len > 1 %>
-                                <select class="form-control selectpicker" multiple title='Choose Store(s)'>
-                                <% item["stores"].each do |store| %>
-                                    <option>
-                                        <%= store["store"]["name"] %>
-                                    </option>
-                                <% end %>
-                                </select>
-                            <% end %>
-                        <% end %>
-                    </td>
-                </tr>
-<% end %>
-</tbody>
+                                    <% elsif len> 1 %>
+                                        <select class="form-control selectpicker" multiple title='Choose Store(s)'>
+                                            <% item["stores"].each do |store| %>
+                                                <option>
+                                                    <%= store["store"]["name"] %>
+                                                </option>
+                                                <% end %>
+                                        </select>
+                                        <% end %>
+                                            <% end %>
+                </td>
+            </tr>
+            <% end %>
+    </tbody>
 </table>
