@@ -39,14 +39,17 @@
        
                     <td>
                         <% unless item["stores"].blank?%>
-                            <% item["stores"].each_with_index do |x, index| %>
-                                <% len = item["stores"].length %>
-                                <% if index + 1 == len %>
-                          
-                                <%= x["store"]["name"] %>
-                                <% else %>
-                                    <%= x["store"]["name"] + " | " %>
+                            <% len = item["stores"].length %>
+                            <% if len == 1 %>
+                                <%= item["stores"][0]["store"]["name"] %>
+                            <% elsif len > 1 %>
+                                <select>
+                                <% item["stores"].each do |store| %>
+                                    <option>
+                                        <%= store["store"]["name"] %>
+                                    </option>
                                 <% end %>
+                                </select>
                             <% end %>
                         <% end %>
                     </td>
