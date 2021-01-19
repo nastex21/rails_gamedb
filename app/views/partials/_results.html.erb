@@ -1,10 +1,11 @@
-<table class="table table-hover table-striped">
+<table id="results_table" class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
+            <th style="display:none;"></th>
             <th scope="col">Select</th>
-            <th scope="col">Images</th>
-            <th scope="col">Titles</th>
-            <th scope="col">Release Dates</th>
+            <th scope="col">Image</th>
+            <th scope="col">Title</th>
+            <th scope="col">Release Date</th>
             <th scope="col">Platforms</th>
             <th scope="col">Stores</th>
         </tr>
@@ -12,11 +13,14 @@
     <tbody>
         <% @results.each do |item| %>
             <tr>
+                <td style="display:none;">
+                    <%= item['id'] %>
+                </td>
                 <td>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input type="checkbox" aria-label="Checkbox for following text input">
+                                <input class='sampleBtn' type="checkbox" aria-label="Checkbox for following text input">
                             </div>
                         </div>
                     </div>
@@ -38,7 +42,7 @@
                                     <select class="form-control selectpicker" multiple title='Choose Platform(s)'>
                                         <% item["platforms"].each do |systems| %>
                                             <% if systems["platform"]["id"].to_s == @name_platform.to_s %>
-                                                <option selected>
+                                                <option selected value='1'>
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
                                             <% else %>

@@ -1,7 +1,39 @@
 document.getElementById('results').innerHTML = "";
 
-document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/results') %>") ;
+document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/results') %>");
 
-$(document).ready(function() {
+$(document).ready(function () {
     $(".selectpicker").selectpicker("refresh");
-});
+
+    var arrData=[];
+
+    $('.sampleBtn').click(function () {
+
+        $("#results_table tbody tr").each(function(){
+            var currentRow=$(this);
+        
+            var col1_value=currentRow.find("td:eq(0)").text();
+            var col2_value=currentRow.find("td:eq(3)").text();
+            var col3_value=currentRow.find("td:eq(4)").text();
+   
+           console.log(col1_value);
+           console.log(col2_value);
+           console.log(col3_value);
+   
+           var obj={};
+            obj.col1=col1_value;
+            obj.col2=col2_value;
+            obj.col3=col3_value;
+    
+            arrData.push(obj);
+       });
+        console.log(arrData);
+    
+    });
+    });
+
+    // loop over each table row (tr)
+
+
+
+ 
