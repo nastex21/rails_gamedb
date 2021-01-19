@@ -1,8 +1,9 @@
+<%= form_tag :form_products, root_path do |f| %>
 <table id="results_table" class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
-            <th style="display:none;"></th>
             <th scope="col">Select</th>
+            <th style="display:none;"></th>
             <th scope="col">Image</th>
             <th scope="col">Title</th>
             <th scope="col">Release Date</th>
@@ -13,18 +14,19 @@
     <tbody>
         <% @results.each do |item| %>
             <tr>
-                <td style="display:none;">
-                    <%= item['id'] %>
-                </td>
                 <td>
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <input class='sampleBtn' type="checkbox" aria-label="Checkbox for following text input">
+                                <%= check_box_tag item['id'], true %>
                             </div>
                         </div>
                     </div>
                 </td>
+                <td style="display:none;">
+                    <%= item['id'] %>
+                </td>
+
                 <td>
                     <%= image_tag(item["background_image"], size: "50x50" , alt:"Screenshot of video game") %>
                 </td>
@@ -83,3 +85,5 @@
             <% end %>
     </tbody>
 </table>
+<%= submit_tag "Save Games" %>
+<% end %>
