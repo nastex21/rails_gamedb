@@ -34,17 +34,24 @@
                     <% len=item["platforms"].length %>
                         <% if len==1 %>
                             <%= item["platforms"][0]["platform"]["name"] %>
-                                <% elsif len> 1 %>
+                        <% elsif len> 1 %>
                                     <select class="form-control selectpicker" multiple title='Choose Platform(s)'>
                                         <% item["platforms"].each do |systems| %>
-                                            <option>
-                                                <%= systems["platform"]["name"] %>
-                                            </option>
-                                            <% end %>
+                                            <% if systems["platform"]["id"].to_s == @name_platform.to_s %>
+                                                <% puts 'yes' %>
+                                                <option selected>
+                                                    <%= systems["platform"]["name"] %>
+                                                </option>
+                                            <% else %>
+                                                <option>
+                                                    <%= systems["platform"]["name"] %>
+                                                </option>
+                                            <% end %>    
+                                        <% end %>
                                     </select>
-                                    <% else %>
-                                        <%= null %>
-                                            <% end %>
+                        <% else %>
+                                    <%= null %>
+                        <% end %>
                 </td>
 
                 <td>

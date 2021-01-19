@@ -5,6 +5,9 @@ class HomeController < ApplicationController
     created_games = CreatedGame.all
 
     @games = steam_games + created_games
+    @name_game = params[:game]
+    @name_platform = params[:platform_list]
+    @name_store = params[:store_list]
 
     find_game(params[:game], params[:platform_list], params[:store_list])
   end
@@ -44,7 +47,7 @@ private
       elsif name.present? && platform.present? && store.present?
           url = "https://rawg-video-games-database.p.rapidapi.com/games?search=#{CGI.escape(name)}&platforms=#{CGI.escape(platform)}&stores=#{CGI.escape(store)}&page_size=10"
           request_api(url, 4)
-      elsif name.blank?
+      elsif name.blank? && platform.present? || name.blank? && store.present? || name.blank? && platform.present? && store.present?
           flash[:alert] = 'Please enter name of game'
           return render action: :index
       end 
