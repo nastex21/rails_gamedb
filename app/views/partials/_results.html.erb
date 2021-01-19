@@ -38,7 +38,6 @@
                                     <select class="form-control selectpicker" multiple title='Choose Platform(s)'>
                                         <% item["platforms"].each do |systems| %>
                                             <% if systems["platform"]["id"].to_s == @name_platform.to_s %>
-                                                <% puts 'yes' %>
                                                 <option selected>
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
@@ -62,15 +61,21 @@
                                     <% elsif len> 1 %>
                                         <select class="form-control selectpicker" multiple title='Choose Store(s)'>
                                             <% item["stores"].each do |store| %>
+                                                <% if store["store"]["id"].to_s == @name_store.to_s %>
+                                                <option selected>
+                                                    <%= store["store"]["name"] %>
+                                                </option>
+                                                <% else %>
                                                 <option>
                                                     <%= store["store"]["name"] %>
                                                 </option>
-                                                <% end %>
-                                        </select>
-                                        <% end %>
                                             <% end %>
-                </td>
-            </tr>
+                                            <% end %>
+                                        </select>
+                                <% end %>
+                            <% end %>
+                    </td>
+                </tr>
             <% end %>
     </tbody>
 </table>
