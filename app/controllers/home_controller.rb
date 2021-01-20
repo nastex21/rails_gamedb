@@ -12,6 +12,10 @@ class HomeController < ApplicationController
     find_game(params[:game], params[:platform_list], params[:store_list])
   end
 
+  def create
+    puts params
+  end
+
 private
 
   def request_api(url, num)

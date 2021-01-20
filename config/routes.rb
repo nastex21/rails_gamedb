@@ -4,5 +4,8 @@ Rails.application.routes.draw do
   resources :steam_games
   devise_for :users
 
+  post 'create' => 'home#create', as: :create
+
+
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

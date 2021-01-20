@@ -1,4 +1,5 @@
-<%= form_tag :form_products, root_path do |f| %>
+<%= bootstrap_form_with(url: create_path, method: 'post') do |f| %>
+
 <table id="results_table" class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
@@ -85,5 +86,5 @@
             <% end %>
     </tbody>
 </table>
-<%= submit_tag "Save Games" %>
+<%= f.button 'Save' , class: 'btn btn-success' %>
 <% end %>
