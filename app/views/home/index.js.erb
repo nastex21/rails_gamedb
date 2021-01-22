@@ -7,25 +7,35 @@ $(document).ready(function() {
 
      var arrData=[];
 
-    $('.sampleBtn').click(function () {
+$(document).on('click','.checkBoxClass',function () {
+    alert("Checkbox state (method 1) = " +  $(this).prop('checked'));
 
-        $("#results_table tbody tr").each(function(){
-            var currentRow=$(this);
-        
-            var col1_value=currentRow.find("td:eq(0)").text();
-            var col2_value=currentRow.find("td:eq(3)").text();
-            var col3_value=currentRow.find("td:eq(4)").text();
-   
-           console.log(col1_value);
-           console.log(col2_value);
-           console.log(col3_value);
-   
-           var obj={};
-            obj.col1=col1_value;
-            obj.col2=col2_value;
-            obj.col3=col3_value;
-    
-            arrData.push(obj);
-       });
-        console.log(arrData);
+    if($(this).prop('checked') == true) {
+        var gameID = $(this).closest('tr').find('td:eq(1)').text();
+        var gameName = $(this).closest('tr').find('td:eq(3)').text();
+        var gameReleaseDate = $(this).closest('tr').find('td:eq(4)').text();
+
+        var gamePlatforms = [];
+        var gameStores = [];
+
+        $(this).closest('tr').find(".platformSelector option:selected").each(function () {
+            var $this = $(this);
+            if ($this.length) {
+                var newText = $this.text().replace(/[\W_]/g, '');
+                gamePlatforms.push(newText);
+            }
+         });
+
+         $(this).closest('tr').find(".storeSelector option:selected").each(function () {
+            var $this = $(this);
+            if ($this.length) {
+                var newText = $this.text().replace(/[\W_]/g, '');
+                gameStores.push(newText);
+            }
+         });
+
+         console.log(gamePlatforms);
+         console.log(gameStores);
+        }
+    })
 });

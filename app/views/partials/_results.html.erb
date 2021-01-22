@@ -1,6 +1,5 @@
 <%= bootstrap_form_with(url: create_path, method: 'post') do |f| %>
 <table id="results_table" class="table table-hover table-striped">
-<table class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
             <th scope="col">Select</th>
@@ -18,9 +17,7 @@
                     <div class="input-group mb-3">
                         <div class="input-group-prepend">
                             <div class="input-group-text">
-                                <%= check_box_tag item['id'], true %>
-                                <input type="checkbox" aria-label="Checkbox for following text input">
-                            </div>
+                                <input type="checkbox" class="checkBoxClass" aria-label="Checkbox for following text input">
                         </div>
                     </div>
                 </td>
@@ -42,10 +39,10 @@
                         <% if len==1 %>
                             <%= item["platforms"][0]["platform"]["name"] %>
                         <% elsif len> 1 %>
-                                    <select class="form-control selectpicker" multiple title='Choose Platform(s)'>
+                                    <select class="form-control selectpicker platformSelector" multiple title='Choose Platform(s)'>
                                         <% item["platforms"].each do |systems| %>
                                             <% if systems["platform"]["id"].to_s == @name_platform.to_s %>
-                                                <option selected>
+                                                <option selected value=<%= systems["platform"]["name"] %> >
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
                                             <% else %>
@@ -66,7 +63,7 @@
                             <% if len==1 %>
                                 <%= item["stores"][0]["store"]["name"] %>
                                     <% elsif len> 1 %>
-                                        <select class="form-control selectpicker" multiple title='Choose Store(s)'>
+                                        <select class="form-control selectpicker storeSelector" multiple title='Choose Store(s)'>
                                             <% item["stores"].each do |store| %>
                                                 <% if store["store"]["id"].to_s == @name_store.to_s %>
                                                 <option selected>
@@ -86,5 +83,5 @@
             <% end %>
     </tbody>
 </table>
-<%= f.button 'Save' , class: 'btn btn-success' %>
+<%= f.button 'Save' , class: 'sampleBtn btn btn-success' %>
 <% end %>
