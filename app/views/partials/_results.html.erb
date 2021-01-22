@@ -1,6 +1,6 @@
 <%= bootstrap_form_with(url: create_path, method: 'post') do |f| %>
-
 <table id="results_table" class="table table-hover table-striped">
+<table class="table table-hover table-striped">
     <thead class="table-dark">
         <tr>
             <th scope="col">Select</th>
@@ -19,6 +19,7 @@
                         <div class="input-group-prepend">
                             <div class="input-group-text">
                                 <%= check_box_tag item['id'], true %>
+                                <input type="checkbox" aria-label="Checkbox for following text input">
                             </div>
                         </div>
                     </div>
