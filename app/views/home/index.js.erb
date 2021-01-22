@@ -22,6 +22,7 @@ $(document).on('click','.checkBoxClass',function () {
             var $this = $(this);
             if ($this.length) {
                 var newText = $this.text().replace(/[\W_]/g, '');
+                console.log($(this).data("object"));
                 gamePlatforms.push(newText);
             }
          });

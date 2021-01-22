@@ -42,11 +42,11 @@
                                     <select class="form-control selectpicker platformSelector" multiple title='Choose Platform(s)'>
                                         <% item["platforms"].each do |systems| %>
                                             <% if systems["platform"]["id"].to_s == @name_platform.to_s %>
-                                                <option selected value=<%= systems["platform"]["name"] %> >
+                                                <option selected data-object=<%= systems["platform"]["id"] %> >
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
                                             <% else %>
-                                                <option>
+                                                <option data-object=<%= systems["platform"]["id"] %>>
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
                                             <% end %>    
