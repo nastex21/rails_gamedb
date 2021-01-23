@@ -11,11 +11,15 @@ $(document).on('click','.checkBoxClass',function () {
     alert("Checkbox state (method 1) = " +  $(this).prop('checked'));
 
     if($(this).prop('checked') == true) {
-        var gameID = $(this).closest('tr').find('td:eq(1)').text();
-        var gameName = $(this).closest('tr').find('td:eq(3)').text();
-        var gameReleaseDate = $(this).closest('tr').find('td:eq(4)').text();
+        var gameObject = {};
+        gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
+        gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
+        gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
         var gamePlatforms = [];
         var gameStores = [];
+        gameObject.platforms = gamePlatforms;
+        gameObject.stores = gameStores;
+
 
         $(this).closest('tr').find(".platformSelector option:selected").each(function () {
             var $this = $(this);
@@ -39,8 +43,7 @@ $(document).on('click','.checkBoxClass',function () {
             }
          });
 
-         console.log(gamePlatforms);
-         console.log(gameStores);
+         console.log(gameObject);
         }
     })
 });
