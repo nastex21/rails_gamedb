@@ -42,11 +42,11 @@
                                     <select class="form-control selectpicker platformSelector" multiple title='Choose Platform(s)'>
                                         <% item["platforms"].each do |systems| %>
                                             <% if systems["platform"]["id"].to_s == @name_platform.to_s %>
-                                                <option selected data-object=<%= systems["platform"]["id"] %> >
+                                                <option selected required data-object=<%= systems["platform"]["id"] %>  >
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
                                             <% else %>
-                                                <option data-object=<%= systems["platform"]["id"] %>>
+                                                <option required data-object=<%= systems["platform"]["id"] %>>
                                                     <%= systems["platform"]["name"] %>
                                                 </option>
                                             <% end %>    
@@ -66,11 +66,11 @@
                                         <select class="form-control selectpicker storeSelector" multiple title='Choose Store(s)'>
                                             <% item["stores"].each do |store| %>
                                                 <% if store["store"]["id"].to_s == @name_store.to_s %>
-                                                <option selected data-object=<%= store["store"]["id"] %>>
+                                                <option selected required data-object=<%= store["store"]["id"] %>>
                                                     <%= store["store"]["name"] %>
                                                 </option>
                                                 <% else %>
-                                                <option data-object=<%= store["store"]["id"] %>>
+                                                <option required data-object=<%= store["store"]["id"] %>>
                                                     <%= store["store"]["name"] %>
                                                 </option>
                                             <% end %>

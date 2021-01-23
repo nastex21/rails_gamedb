@@ -7,16 +7,18 @@ $(document).ready(function() {
 
      var arrData=[];
 
+     var gameObject = {};
+     var gamePlatforms = [];
+     var gameStores = [];
+
+
 $(document).on('click','.checkBoxClass',function () {
     alert("Checkbox state (method 1) = " +  $(this).prop('checked'));
 
     if($(this).prop('checked') == true) {
-        var gameObject = {};
         gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
-        var gamePlatforms = [];
-        var gameStores = [];
         gameObject.platforms = gamePlatforms;
         gameObject.stores = gameStores;
 
@@ -45,5 +47,13 @@ $(document).on('click','.checkBoxClass',function () {
 
          console.log(gameObject);
         }
-    })
+    });
+
+    $( ".platformSelector" ).change(function() {
+        var $this = $(this);
+        var arrayValues = [];
+
+        console.log($(this).closest('tr').find('td:eq(1)').text());
+    });
+
 });
