@@ -4,8 +4,6 @@ document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (rend
 
 $(document).ready(function() {
     $(".selectpicker").selectpicker("refresh");
-    $('select').attr('disabled', true);
-
 
      var arrData=[];
      var gamePlatforms = [];
@@ -26,41 +24,46 @@ $(document).on('click','.checkBoxClass',function () {
         gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
-        gameObject.platforms = gamePlatforms;
+        gameObject.platform = gamePlatforms;
         gameObject.stores = gameStores;
+
         arrData = [gameObject, ...arrData];
+        var $this;
 
         $(this).closest('tr').find(".platformSelector option:selected").each(function () {
-            var $this = $(this);
+            $this = $(this);
+
+            console.log('something');
             if ($this.length) {
+                console.log($this);
                 var newText = $this.text().replace(/[\W_]/g, '');
                 var newObj = {};
                 newObj.id = $(this).data("object");
                 newObj.platform = newText;
                 gamePlatforms.push(newObj);
+                console.log(arrData);
             }
          });
 
          $(this).closest('tr').find(".storeSelector option:selected").each(function () {
-            var $this = $(this);
+            $this = $(this);
             if ($this.length) {
                 var newText = $this.text().replace(/[\W_]/g, '');
                 var newObj = {};
                 newObj.id = $(this).data("object");
                 newObj.store = newText;
                 gameStores.push(newObj);
+                console.log(arrData);
             }
          });
 
         }
+
+        $( ".platformSelector" ).change(function() {
+            var newText = $this.text().replace(/[\W_]/g, '');
+            console.log(newText);
+
+        });
         console.log(arrData);
     });
-
-    $( ".platformSelector" ).change(function() {
-        var $this = $(this);
-        var arrayValues = [];
-
-        console.log($(this).closest('tr').find('td:eq(1)').text());
-    });
-
 });
