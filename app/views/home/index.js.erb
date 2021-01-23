@@ -4,24 +4,31 @@ document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (rend
 
 $(document).ready(function() {
     $(".selectpicker").selectpicker("refresh");
+    $('select').attr('disabled', true);
+
 
      var arrData=[];
-
-     var gameObject = {};
      var gamePlatforms = [];
      var gameStores = [];
 
 
 $(document).on('click','.checkBoxClass',function () {
-    alert("Checkbox state (method 1) = " +  $(this).prop('checked'));
+    // Delete object when unchecked
+    if($(this). prop('checked') == false){
+        var gameObject_id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
+        arrData = arrData.filter(item => item.id !== gameObject_id);
+        console.log(arrData);
+    }
 
     if($(this).prop('checked') == true) {
+        $(this).closest('tr').find('select').attr('disabled', false); //makes select options disabled 
+        var gameObject = {};
         gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.platforms = gamePlatforms;
         gameObject.stores = gameStores;
-
+        arrData = [gameObject, ...arrData];
 
         $(this).closest('tr').find(".platformSelector option:selected").each(function () {
             var $this = $(this);
@@ -45,8 +52,8 @@ $(document).on('click','.checkBoxClass',function () {
             }
          });
 
-         console.log(gameObject);
         }
+        console.log(arrData);
     });
 
     $( ".platformSelector" ).change(function() {
