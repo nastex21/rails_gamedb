@@ -4,69 +4,60 @@ document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (rend
 
 $(document).ready(function() {
     $(".selectpicker").selectpicker("refresh");
+    $('select').attr('disabled', true);//disables select options
 
      var arrData=[];
 
-     var gameObject = {};
-     var gamePlatforms = [];
-     var gameStores = [];
-
 
 $(document).on('click','.checkBoxClass',function () {
-    alert("Checkbox state (method 1) = " +  $(this).prop('checked'));
+    // Delete object when unchecked
+    if($(this). prop('checked') == false){
+        var gameObject_id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
+        arrData = arrData.filter(item => item.id !== gameObject_id);
+        console.log(arrData);
+    }
+
 
     if($(this).prop('checked') == true) {
+        $(this).closest('tr').find('select').attr('disabled', false); //makes select options enabled again
+        var gameObject = {};
+        var gamePlatforms;
+        var gameStores;
         gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.platform = gamePlatforms;
         gameObject.stores = gameStores;
 
-<<<<<<< HEAD
+
         arrData = [gameObject, ...arrData];
-        var $this;
-=======
->>>>>>> parent of 0e6980a... Checkbox data is correct.
 
-        $(this).closest('tr').find(".platformSelector option:selected").each(function () {
-            $this = $(this);
+        $(this).closest( 'tr').find('.platformSelector').change(function() {
+            var $this = $(this);
+            var gamePlatforms2 = [];
 
-            console.log('something');
-            if ($this.length) {
-                console.log($this);
-                var newText = $this.text().replace(/[\W_]/g, '');
+            $(this).find('.platformSelector option:selected').toArray().map(function(item){ 
                 var newObj = {};
-                newObj.id = $(this).data("object");
-                newObj.platform = newText;
-                gamePlatforms.push(newObj);
-                console.log(arrData);
+                newObj.id = item.dataset.object;
+                newObj.platform = item.text;
+                gamePlatforms2.push(newObj);
             }
-         });
-
-         $(this).closest('tr').find(".storeSelector option:selected").each(function () {
-            $this = $(this);
-            if ($this.length) {
-                var newText = $this.text().replace(/[\W_]/g, '');
-                var newObj = {};
-                newObj.id = $(this).data("object");
-                newObj.store = newText;
-                gameStores.push(newObj);
-                console.log(arrData);
-            }
-         });
-
-         console.log(gameObject);
-        }
-<<<<<<< HEAD
-=======
-    });
->>>>>>> parent of 0e6980a... Checkbox data is correct.
-
-        $( ".platformSelector" ).change(function() {
-            var newText = $this.text().replace(/[\W_]/g, '');
-            console.log(newText);
-
+            ).join();
+            gamePlatforms = gamePlatforms2;
         });
+
+        $(this).closest('tr').find('.storeSelector').change(function(){
+            var $this = $(this);
+            var gameStores2 = [];
+            $(this).find(".storeSelector option:selected").toArray().map(function (item) {
+                     var newObj = {};
+                     newObj.id = item.dataset.object;
+                     newObj.store = item.text;
+                     gameStores2.push(newObj);
+              }).join();
+            gameStores = gameStores2;
+        })
+        }
         console.log(arrData);
     });
 });
