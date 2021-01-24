@@ -8,7 +8,6 @@ $(document).ready(function() {
 
      var arrData=[];
 
-
 $(document).on('click','.checkBoxClass',function () {
     // Delete object when unchecked
     if($(this). prop('checked') == false){
@@ -17,47 +16,39 @@ $(document).on('click','.checkBoxClass',function () {
         console.log(arrData);
     }
 
-
     if($(this).prop('checked') == true) {
         $(this).closest('tr').find('select').attr('disabled', false); //makes select options enabled again
         var gameObject = {};
-        var gamePlatforms;
-        var gameStores;
         gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
-        gameObject.platform = gamePlatforms;
-        gameObject.stores = gameStores;
-
-
-        arrData = [gameObject, ...arrData];
 
         $(this).closest( 'tr').find('.platformSelector').change(function() {
-            var $this = $(this);
-            var gamePlatforms2 = [];
-
+            var gamePlatforms = [];
             $(this).find('.platformSelector option:selected').toArray().map(function(item){ 
                 var newObj = {};
                 newObj.id = item.dataset.object;
                 newObj.platform = item.text;
-                gamePlatforms2.push(newObj);
+                gamePlatforms.push(newObj);
             }
             ).join();
-            gamePlatforms = gamePlatforms2;
+            gameObject.platform = gamePlatforms;
+            console.log(gamePlatforms);
+            console.log(gameObject);
         });
 
         $(this).closest('tr').find('.storeSelector').change(function(){
-            var $this = $(this);
-            var gameStores2 = [];
+            var gameStores = [];
             $(this).find(".storeSelector option:selected").toArray().map(function (item) {
                      var newObj = {};
                      newObj.id = item.dataset.object;
                      newObj.store = item.text;
-                     gameStores2.push(newObj);
+                     gameStores.push(newObj);
               }).join();
-            gameStores = gameStores2;
-        })
+              gameObject.stores = gameStores;
+              console.log(gameStores);
+              console.log(gameObject);
+        });
         }
-        console.log(arrData);
     });
 });
