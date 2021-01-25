@@ -1,5 +1,6 @@
 class HomeController < ApplicationController
 
+
   def index
     steam_games = SteamGame.all
     created_games = CreatedGame.all
@@ -13,7 +14,7 @@ class HomeController < ApplicationController
   end
 
   def create
-    puts params
+    puts JSON.parse params
   end
 
 private
