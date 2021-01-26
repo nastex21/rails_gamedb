@@ -4,31 +4,6 @@ document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (rend
 
 var arrData = [];
 
-var gameSave = function() {
-    console.log(arrData);
-
-    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
-
-    $.ajax({ 
-        headers: {
-            'X-CSRF-Token': csrf
-        },
-        type: 'POST',
-        url: '/create',
-        data: {
-            'data': arrData
-        },
-        success: function(data,status,xhr){
-          console.log(data);
-          alert(data.message);
-        },
-        error: function(xhr,status,error){
-          console.log(xhr);
-          alert(error);
-        }
-      });
-};
-
 $(document).ready(function() {
     $(".selectpicker").selectpicker("refresh");
     $('select').attr('disabled', true);//disables select options
@@ -39,6 +14,30 @@ $(document).ready(function() {
         else array.push(item);
         console.log(arrData);
       }
+
+      $("#saveGameBtn").on('click', function(){
+        const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+        $.ajax({ 
+            headers: {
+                'X-CSRF-Token': csrf
+            },
+            type: 'GET',
+            url: '/create',
+            dataType: "script",
+            data: {
+                'data': arrData
+            },
+            success: function(data,status,xhr){
+              console.log(data);
+              alert(data.message);
+            },
+            error: function(xhr,status,error){
+              console.log(xhr);
+              alert(error);
+            }
+          });
+        });
 
 $(document).on('click','.checkBoxClass',function () {
     // Delete object when unchecked
