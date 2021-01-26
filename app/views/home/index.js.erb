@@ -1,12 +1,16 @@
 document.getElementById('results').innerHTML = "";
 
-document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/results') %>") ;
+document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/results') %>");
+
+var arrData = [];
+
+var gameSave = function() {
+    console.log(arrData);
+};
 
 $(document).ready(function() {
     $(".selectpicker").selectpicker("refresh");
     $('select').attr('disabled', true);//disables select options
-
-     var arrData=[];
 
      function upsert(array, item) { // (1)
         const i = array.findIndex(_item => _item.id === item.id);
@@ -24,11 +28,13 @@ $(document).on('click','.checkBoxClass',function () {
     }
 
     if($(this).prop('checked') == true) {
+
         $(this).closest('tr').find('select').attr('disabled', false); //makes select options enabled again
         var gameObject = {};
         gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
+        arrData.push(gameObject);
 
         $(this).closest( 'tr').find('.platformSelector').change(function() {
             var gamePlatforms = [];
@@ -55,4 +61,4 @@ $(document).on('click','.checkBoxClass',function () {
         });
         }
     });
-});
+    });
