@@ -13,7 +13,15 @@ class HomeController < ApplicationController
   end
 
   def create
+    data = {:message => "Alert this!"}
+    render :json => data, :status => :ok
+
+    puts 'this is data'
+    puts data 
+    puts 'this is params'
     puts params
+
+
   end
 
 private

@@ -6,6 +6,27 @@ var arrData = [];
 
 var gameSave = function() {
     console.log(arrData);
+
+    const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
+
+    $.ajax({ 
+        headers: {
+            'X-CSRF-Token': csrf
+        },
+        type: 'POST',
+        url: '/create',
+        data: {
+            'data': arrData
+        },
+        success: function(data,status,xhr){
+          console.log(data);
+          alert(data.message);
+        },
+        error: function(xhr,status,error){
+          console.log(xhr);
+          alert(error);
+        }
+      });
 };
 
 $(document).ready(function() {
@@ -35,6 +56,7 @@ $(document).on('click','.checkBoxClass',function () {
         gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
         arrData.push(gameObject);
+
 
         $(this).closest( 'tr').find('.platformSelector').change(function() {
             var gamePlatforms = [];
