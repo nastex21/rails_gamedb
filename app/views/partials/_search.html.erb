@@ -1,0 +1,14 @@
+  <div class="row">
+    <%= bootstrap_form_with(format: :json, url: root_path, method: 'get' , id: 'game-search', class: 'form-inline' ) do |f| %>
+        <div class="col-xs col-md">
+          <%= f.text_field :game, placeholder: 'Search For Games' , inline: true, hide_label: true %>
+        </div>
+        <div class="col-xs col-md">
+          <%= f.select :platform_list, options_for_select(platform_list.map { |obj| [obj['name'], obj['id']]}),{include_blank: 'Select Platform' }, inline: true %>
+        </div>
+        <div class="col-xs col-md">
+          <%= f.select :store_list, options_for_select(store_list.map { |obj| [obj['name'], obj['id']] }), {include_blank: 'Select Game Store' }, inline: true %>
+        </div>
+          <%= f.button 'Search' , class: 'btn btn-success' %>
+      <% end %>
+  </div>
