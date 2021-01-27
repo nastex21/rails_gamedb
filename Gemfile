@@ -20,6 +20,7 @@ gem 'devise', '~> 4.7', '>= 4.7.3'
 gem 'excon', '~> 0.78.1'
 gem 'bootstrap_form', '~> 4.5'
 gem 'turbolinks', '~> 5.2', '>= 5.2.1'
+gem 'haml', '~> 5.2', '>= 5.2.1'
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
 
