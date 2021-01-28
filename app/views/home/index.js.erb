@@ -18,16 +18,16 @@ $(document).ready(function() {
       $("#saveGameBtn").on('click', function(){
         const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-        $.ajax({ 
+       $.ajax({ 
             headers: {
                 'X-CSRF-Token': csrf
             },
             type: 'GET',
             url: '/create',
-            dataType: "script",
+            dataType: "json",
             data: {
                 'data': arrData
-            },
+            }, 
             success: function(data,status,xhr){
               console.log(data);
               alert(data.message);
@@ -36,7 +36,7 @@ $(document).ready(function() {
               console.log(xhr);
               alert(error);
             }
-          });
+          }); 
         });
 
 $(document).on('click','.checkBoxClass',function () {
