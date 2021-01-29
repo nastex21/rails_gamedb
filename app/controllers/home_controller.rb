@@ -5,10 +5,6 @@ class HomeController < ApplicationController
     created_games = CreatedGame.all
 
     @games = steam_games + created_games
-    @name_game = params[:game]
-    @name_platform = params[:platform_list]
-    @name_store = params[:store_list]
-
     GetGamesCall.call(params[:game], params[:platform_list], params[:store_list])
   end
 
@@ -20,7 +16,5 @@ class HomeController < ApplicationController
     puts data 
     puts 'this is params'
     puts params
-
-
   end
 end
