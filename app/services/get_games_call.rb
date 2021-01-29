@@ -34,6 +34,8 @@ class GetGamesCall
         end 
     end
 
+    private
+
     def request_api(url, num)
         puts 'inside request_api'
         response = Excon.get(
@@ -44,31 +46,22 @@ class GetGamesCall
             }
         )
 
-        return nil if response.status != 200
-
-
-        return make_game_list(response.body, num)
-    end
-
-    def make_game_list(games, num)
-        results = JSON.parse(games)
-        @results = results["results"]
+        results = JSON.parse(response.body)
+        final_results = results["results"]
         
         if num == 1 
-        @search_method = 'name'
+            @search_method = 'name'
         elsif num == 2 
-        @search_method = 'platform'
+            @search_method = 'platform'
         elsif num == 3
-        @search_method = 'store'
+            @search_method = 'store'
         end
 
-        respond_to do |format|
-        format.html { render(:text => "not implemented") }
-        format.js
+        if response.status != 200
+            OpenStruct.new({success?: false, error: e})
+        else
+            OpenStruct.new({success?: true, payload: final_results})
         end
 
     end
-
-    private
-
 end

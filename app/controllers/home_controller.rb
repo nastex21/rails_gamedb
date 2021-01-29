@@ -5,7 +5,18 @@ class HomeController < ApplicationController
     created_games = CreatedGame.all
 
     @games = steam_games + created_games
-    GetGamesCall.call(params[:game], params[:platform_list], params[:store_list])
+    result = GetGamesCall.call(params[:game], params[:platform_list], params[:store_list])
+    
+    if result && result.success?
+      @result = result.payload
+      respond_to do |format|
+        format.html
+        format.js
+      end
+  
+    else 
+      puts "ERROR"
+    end
   end
 
   def create
