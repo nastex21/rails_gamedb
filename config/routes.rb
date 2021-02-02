@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :inserted_games
   resources :created_games
   root 'home#index'
   resources :steam_games
