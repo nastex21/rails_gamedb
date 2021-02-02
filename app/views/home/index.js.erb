@@ -18,16 +18,17 @@ $(document).ready(function() {
       $("#saveGameBtn").on('click', function(){
         const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
+        console.log(arrData);
        $.ajax({ 
             headers: {
                 'X-CSRF-Token': csrf
             },
-            type: 'GET',
-            url: '/create',
+            type: 'POST',
+            url: '/created_games',
             dataType: "json",
             data: {
-                'data': arrData
-            }, 
+              'created_game': arrData
+          },
             success: function(data,status,xhr){
               console.log(data);
               alert(data.message);
@@ -51,9 +52,9 @@ $(document).on('click','.checkBoxClass',function () {
 
         $(this).closest('tr').find('select').attr('disabled', false); //makes select options enabled again
         var gameObject = {};
-        gameObject.id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
-        gameObject.name = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
-        gameObject.date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
+        gameObject.game_id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
+        gameObject.title = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
+        gameObject.released_date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
         arrData.push(gameObject);
 
 
@@ -61,12 +62,12 @@ $(document).on('click','.checkBoxClass',function () {
             var gamePlatforms = [];
             $(this).find('.platformSelector option:selected').toArray().map(function(item){ 
                 var newObj = {};
-                newObj.id = item.dataset.object;
-                newObj.platform = item.text;
+                newObj.system_id = item.dataset.object;
+                newObj.system = item.text;
                 gamePlatforms.push(newObj);
             }
             ).join();
-            gameObject.platform = gamePlatforms;
+            gameObject.system = gamePlatforms;
             upsert(arrData, gameObject);
         });
 
@@ -74,11 +75,11 @@ $(document).on('click','.checkBoxClass',function () {
             var gameStores = [];
             $(this).find(".storeSelector option:selected").toArray().map(function (item) {
                      var newObj = {};
-                     newObj.id = item.dataset.object;
-                     newObj.store = item.text;
+                     newObj.service_id = item.dataset.object;
+                     newObj.service = item.text;
                      gameStores.push(newObj);
               }).join();
-              gameObject.stores = gameStores;
+              gameObject.service = gameStores;
         });
         }
     });

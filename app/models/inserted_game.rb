@@ -1,0 +1,2 @@
+class InsertedGame < ApplicationRecord
+end
