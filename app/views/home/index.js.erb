@@ -18,17 +18,30 @@ $(document).ready(function() {
       $("#saveGameBtn").on('click', function(){
         const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-        console.log(arrData);
+        var final_results = {};
+        final_results.created_games = arrData;
+
+        var gameArr = [];
+        var gameObj = {
+          'game_id': 13281, 
+          'title': "Doom & Destiny", 
+          'image': 'image.jpg', 
+          'system': 'PC', 
+          'released_date': "2013-10-11", 
+          'service': "Manual"
+        }
+        gameArr.push(gameObj);
+
+        console.log(final_results);
        $.ajax({ 
             headers: {
                 'X-CSRF-Token': csrf
             },
             type: 'POST',
             url: '/created_games',
-            dataType: "json",
-            data: {
-              'created_game': arrData
-          },
+            dataType: 'json',
+            data: JSON.stringify(gameArr),
+            contentType: 'application/json',  
             success: function(data,status,xhr){
               console.log(data);
               alert(data.message);
