@@ -40,6 +40,19 @@ ActiveRecord::Schema.define(version: 2021_02_06_074500) do
     t.string "service"
   end
 
+  create_table "steam_games", force: :cascade do |t|
+    t.integer "game_id"
+    t.string "title"
+    t.string "image"
+    t.string "system", default: "PC"
+    t.string "released_date"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.integer "user_id"
+    t.string "service", default: "Steam"
+    t.index ["user_id"], name: "index_steam_games_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false

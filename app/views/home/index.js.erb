@@ -18,22 +18,7 @@ $(document).ready(function() {
       $("#saveGameBtn").on('click', function(){
         const csrf = document.querySelector("meta[name='csrf-token']").getAttribute("content");
 
-        var final_results = {};
-        final_results.created_games = arrData;
-
-        var gameArr = [];
-        var gameObj = {
-          'game_id': 13281, 
-          'title': "Doom & Destiny", 
-          'image': 'image.jpg', 
-          'system': 'PC', 
-          'released_date': "2013-10-11", 
-          'service': "Manual",
-          'user_id': 1
-        }
-        gameArr.push(gameObj);
-
-        console.log(final_results);
+        console.log(arrData);
        $.ajax({ 
             headers: {
               'X-CSRF-Token': csrf
@@ -42,7 +27,7 @@ $(document).ready(function() {
             url: '/games_from_results',
             dataType: 'json',
             data: JSON.stringify({
-              'games_from_result': gameObj
+              'games_from_result': arrData
             }),
             contentType: 'application/json',  
             success: function(data,status,xhr){
@@ -71,6 +56,7 @@ $(document).on('click','.checkBoxClass',function () {
         gameObject.game_id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.title = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.released_date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
+        gameObject.user_id = 1;
         arrData.push(gameObject);
 
 
