@@ -1,4 +1,5 @@
 class GamesFromResultsController < ApplicationController
+  skip_before_action :verify_authenticity_token
   before_action :set_games_from_result, only: [:show, :edit, :update, :destroy]
 
   # GET /games_from_results
@@ -24,9 +25,10 @@ class GamesFromResultsController < ApplicationController
   # POST /games_from_results
   # POST /games_from_results.json
   def create
-    puts 'params'
-    puts params
     @games_from_result = GamesFromResult.new(games_from_result_params)
+
+    puts 'games from result'
+    puts @games_from_result
 
     respond_to do |format|
       if @games_from_result.save
@@ -71,6 +73,6 @@ class GamesFromResultsController < ApplicationController
 
     # Only allow a list of trusted parameters through.
     def games_from_result_params
-      params.fetch(:games_from_result, {[:game_id, :title, :image, :system, :released_date, :user_id, :service]})
+      params.require(:games_from_result).permit(:game_id, :title, :image, :system, :released_date, :user_id, :service)
     end
 end
