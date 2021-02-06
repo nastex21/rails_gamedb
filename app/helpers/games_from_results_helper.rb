@@ -1,0 +1,2 @@
+module GamesFromResultsHelper
+end

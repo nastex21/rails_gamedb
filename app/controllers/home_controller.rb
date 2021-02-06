@@ -1,10 +1,9 @@
 class HomeController < ApplicationController
 
   def index
-    steam_games = SteamGame.all
     created_games = CreatedGame.all
 
-    @games = steam_games + created_games
+    @games = created_games
     @name_game = params[:game]
     @name_platform = params[:platform_list]
     @name_store = params[:store_list]

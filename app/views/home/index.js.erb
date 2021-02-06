@@ -32,15 +32,17 @@ $(document).ready(function() {
         }
         gameArr.push(gameObj);
 
+        var final_obj = {'games_from_result': JSON.stringify(gameArr)};
+
         console.log(final_results);
        $.ajax({ 
             headers: {
                 'X-CSRF-Token': csrf
             },
             type: 'POST',
-            url: '/created_games',
+            url: '/games_from_results',
             dataType: 'json',
-            data: JSON.stringify(gameArr),
+            data: final_obj,
             contentType: 'application/json',  
             success: function(data,status,xhr){
               console.log(data);
