@@ -60,7 +60,7 @@ class GamesFromResultsController < ApplicationController
   def destroy
     @games_from_result.destroy
     respond_to do |format|
-      format.html { redirect_to games_from_results_url, notice: 'Games from result was successfully destroyed.' }
+      format.html { redirect_to root_url, notice: 'Games from result was successfully destroyed.' }
       format.json { head :no_content }
     end
   end
