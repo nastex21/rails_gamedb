@@ -26,18 +26,19 @@ class GamesFromResultsController < ApplicationController
   # POST /games_from_results.json
   def create
     
-    @games_from_result = GamesFromResult.new(games_from_result_params)
+    games_from_result_params.each do |item|
+      puts 'item'
+      puts item
+      @games_from_result = GamesFromResult.new(item)
 
-    puts 'games from result params'
-    puts games_from_result_params
-
-    respond_to do |format|
-      if @games_from_result.save
-        format.html { redirect_to @games_from_result, notice: 'Games from result was successfully created.' }
-        format.json { render :show, status: :created, location: @games_from_result }
-      else
-        format.html { render :new }
-        format.json { render json: @games_from_result.errors, status: :unprocessable_entity }
+      respond_to do |format|
+        if @games_from_result.save
+          format.html { redirect_to @games_from_result, notice: 'Games from result was successfully created.' }
+          format.json { render :show, status: :created, location: @games_from_result }
+        else
+          format.html { render :new }
+          format.json { render json: @games_from_result.errors, status: :unprocessable_entity }
+        end
       end
     end
   end
