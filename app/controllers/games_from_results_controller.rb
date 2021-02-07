@@ -29,7 +29,7 @@ class GamesFromResultsController < ApplicationController
     games_from_result_params.each do |item|
       puts 'item'
       puts item
-      @games_from_result = GamesFromResult.new(item)
+      @games_from_result = current_user.games_from_results.build(item)
 
       respond_to do |format|
         if @games_from_result.save
