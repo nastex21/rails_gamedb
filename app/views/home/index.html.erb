@@ -27,10 +27,13 @@
               </thead>
               <tbody>
                 <% @games.each do |game| %>
+                    <%= game %>
                     <% if game.user==current_user %>
                       <tr>
                         <td>
-                          <%= link_to game.image, game %>
+                          <% if game.image %>
+                            <%= link_to image_tag(game.image), game, :class => 'thumbnails' %>
+                          <% end %>
                         </td>
                         <td>
                           <%= link_to game.title, game %>

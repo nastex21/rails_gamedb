@@ -56,7 +56,9 @@ $(document).on('click','.checkBoxClass',function () {
         gameObject.game_id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
         gameObject.title = $(this).closest('tr').find('td:eq(3)').text().replace(/[\r\n]+/g, ' ').trim();
         gameObject.released_date = $(this).closest('tr').find('td:eq(4)').text().replace(/[\r\n]+/g, ' ').trim();
+        gameObject.image = $(this).closest('tr').find('td:eq(2)').children('img').attr('src');
         arrData.push(gameObject);
+
 
         $(this).closest( 'tr').find('.platformSelector').change(function() {
             var gamePlatforms = [];
