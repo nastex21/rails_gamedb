@@ -45,8 +45,7 @@ $(document).on('click','.checkBoxClass',function () {
     // Delete object when unchecked
     if($(this). prop('checked') == false){
         var gameObject_id = $(this).closest('tr').find('td:eq(1)').text().replace(/[\W_]/g, '');
-        arrData = arrData.filter(item => item.id !== gameObject_id);
-        console.log(arrData);
+        arrData = arrData.filter(item => item.game_id !== gameObject_id);
     }
 
     if($(this).prop('checked') == true) {
