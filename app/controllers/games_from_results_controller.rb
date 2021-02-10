@@ -25,12 +25,20 @@ class GamesFromResultsController < ApplicationController
   # POST /games_from_results
   # POST /games_from_results.json
   def create
-  
-    @games_from_result = current_user.games_from_results.build(games_from_result_params)
-    @games_from_result.each {|p| GamesFromResult.new(p).save }  
+    begin
+      GamesFromResult.transaction do
+        @games = current_user.games_from_results.create!(games_from_result_params)
+      end
+    rescue ActiveRecord::RecordInvalid => exception
+      @games = {
+        error: {
+          status: 422,
+          message: exception
+        }
+      }
+    end
 
-    
-
+    render json: @games
   end
 
   # PATCH/PUT /games_from_results/1
