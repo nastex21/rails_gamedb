@@ -27,10 +27,10 @@ class GamesFromResultsController < ApplicationController
   def create
     begin
       GamesFromResult.transaction do
-        @games = current_user.games_from_results.create!(games_from_result_params)
+        @savedgames = current_user.games_from_results.create!(games_from_result_params)
       end
     rescue ActiveRecord::RecordInvalid => exception
-      @games = {
+      @savedgames = {
         error: {
           status: 422,
           message: exception
@@ -38,7 +38,13 @@ class GamesFromResultsController < ApplicationController
       }
     end
 
-    render json: @games
+    render json: @savedgames
+
+    respond_to do |format|
+      format.js
+      format.html
+    end
+    
   end
 
   # PATCH/PUT /games_from_results/1
