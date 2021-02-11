@@ -1,0 +1,2 @@
+      invoke  active_record
+      create    db/migrate/20210211041309_add_index_to_created_games.rb

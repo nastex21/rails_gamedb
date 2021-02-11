@@ -17,7 +17,9 @@
         </tr>
       </thead>
       <tbody>
-        <% @games.each do |game| %>
+        <%= @game_obj %>
+        <% if instance_variable_defined?("@savedgames") %>
+        <% @game_obj.each do |game| %>
         <% if game.user==current_user %>
           <tr>
             <td>
@@ -48,6 +50,7 @@
               <% end %>
           </tr>
               <% end %>
+          <% end %>
           <% end %>
   </tbody>
 </table>

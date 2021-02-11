@@ -38,13 +38,11 @@ class GamesFromResultsController < ApplicationController
       }
     end
 
-    render json: @savedgames
-
     respond_to do |format|
+      format.html { render(:text => "not implemented") }
       format.js
-      format.html
     end
-    
+
   end
 
   # PATCH/PUT /games_from_results/1

@@ -32,7 +32,9 @@ $(document).ready(function() {
             contentType: 'application/json',  
             success: function(data,status,xhr){
               console.log(data);
-              alert(data.message);
+            document.querySelector('#userTable').remove()
+              
+            document.querySelector('#initialTable').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/updatedTable') %>"); 
             },
             error: function(xhr,status,error){
               console.log(xhr);

@@ -28,6 +28,8 @@ class CreatedGamesController < ApplicationController
   def create
     @created_game = current_user.created_games.build(created_game_params)
 
+    @game_obj = {'game' => 'Mario'}
+
     respond_to do |format|
       if @created_game.save
         format.html { redirect_to @created_game, notice: 'Created game was successfully created.' }

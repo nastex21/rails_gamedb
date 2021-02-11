@@ -10,13 +10,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_02_06_074500) do
+ActiveRecord::Schema.define(version: 2021_02_11_041309) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "created_games", force: :cascade do |t|
-    t.integer "game_id"
     t.string "title"
     t.string "image"
     t.string "system"
@@ -25,32 +24,22 @@ ActiveRecord::Schema.define(version: 2021_02_06_074500) do
     t.datetime "updated_at", precision: 6, null: false
     t.integer "user_id"
     t.string "service", default: "Manual"
+    t.integer "game_id"
+    t.index ["game_id"], name: "index_created_games_on_game_id", unique: true
     t.index ["user_id"], name: "index_created_games_on_user_id"
   end
 
   create_table "games_from_results", force: :cascade do |t|
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "game_id"
     t.string "title"
     t.string "image"
     t.string "system"
     t.string "released_date"
     t.integer "user_id"
     t.string "service"
-  end
-
-  create_table "steam_games", force: :cascade do |t|
     t.integer "game_id"
-    t.string "title"
-    t.string "image"
-    t.string "system", default: "PC"
-    t.string "released_date"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.integer "user_id"
-    t.string "service", default: "Steam"
-    t.index ["user_id"], name: "index_steam_games_on_user_id"
+    t.index ["game_id"], name: "index_games_from_results_on_game_id", unique: true
   end
 
   create_table "users", force: :cascade do |t|
