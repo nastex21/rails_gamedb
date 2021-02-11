@@ -25,23 +25,11 @@ class GamesFromResultsController < ApplicationController
   # POST /games_from_results
   # POST /games_from_results.json
   def create
-    begin
-      GamesFromResult.transaction do
-        @savedgames = current_user.games_from_results.create!(games_from_result_params)
-      end
-    rescue ActiveRecord::RecordInvalid => exception
-      @savedgames = {
-        error: {
-          status: 422,
-          message: exception
-        }
-      }
-    end
 
-    respond_to do |format|
-      format.html { render(:text => "not implemented") }
-      format.js
-    end
+    savedgames = games_from_result_params.map { |v| v['user_id'] = current_user.id; v }
+
+    response = GamesFromResult.create!(savedgames)
+    render json: response
 
   end
 
