@@ -37,8 +37,11 @@ $(document).ready(function() {
             document.querySelector('#initialTable').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/updatedTable') %>"); 
             },
             error: function(xhr,status,error){
-              console.log(xhr);
-              alert(error);
+              if (error == "Unprocessable Entity") {
+                alert("Duplicate game found. Unable to process your request.");
+              } else {
+                alert("Something went wrong. Please recheck and try again.")
+              }
             }
           }); 
         });

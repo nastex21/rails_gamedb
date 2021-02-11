@@ -29,8 +29,13 @@ class GamesFromResultsController < ApplicationController
     savedgames = games_from_result_params.map { |v| v['user_id'] = current_user.id; v }
 
     response = GamesFromResult.create!(savedgames)
-    render json: response
-
+    render json: response, status: ok
+    rescue ActiveRecord::RecordNotUnique  => e
+      render json: {
+        status: 422,
+        error: 'Duplicate game found.'
+     }, 
+     status: :unprocessable_entity
   end
 
   # PATCH/PUT /games_from_results/1
