@@ -29,7 +29,15 @@ class GamesFromResultsController < ApplicationController
     savedgames = games_from_result_params.map { |v| v['user_id'] = current_user.id; v }
 
     response = GamesFromResult.create!(savedgames)
-    render json: response, status: ok
+
+    if response.all? { |group| group.persisted? }
+     flash.now[:notice] = "Game successfully added."
+     render json: { success: true, message: "Games created." }
+    else
+     errors = response.map { |group| group.errors.full_messages.empty? ? nil : group.errors.full_messages }.compact.join("<br/>") # gross one-liner to show you where the errors live
+     render_422 response, "Could not save groups. Here are the errors: #{errors}"
+    end
+
     rescue ActiveRecord::RecordNotUnique  => e
       render json: {
         status: 422,

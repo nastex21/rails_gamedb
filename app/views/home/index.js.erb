@@ -32,15 +32,17 @@ $(document).ready(function() {
             contentType: 'application/json',  
             success: function(data,status,xhr){
               console.log(data);
-            document.querySelector('#userTable').remove()
               
-            document.querySelector('#initialTable').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/updatedTable') %>"); 
+            document.querySelector('#alerts').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/alerts') %>"); 
+
+            var duration = 5000; // 4 seconds
+            setTimeout(function () { $('#alerts').hide(); }, duration);
             },
             error: function(xhr,status,error){
               if (error == "Unprocessable Entity") {
                 alert("Duplicate game found. Unable to process your request.");
               } else {
-                alert("Something went wrong. Please recheck and try again.")
+                alert("Something went wrong. Please recheck and try again.");
               }
             }
           }); 

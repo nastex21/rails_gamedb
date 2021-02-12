@@ -1,10 +1,16 @@
 <% if user_signed_in? %>
 
-    <%= render "/partials/search" %>
+  <%= render "/partials/search" %>
 
     <div id="error_explanation"></div>
 
+    <div id="alerts">
+    </div>
+
     <div id="results"></div>
+
+    <div id="alerts">
+    </div>
 
     <div id="initialTable">
       <% if instance_variable_defined?("@games") %>
@@ -13,7 +19,7 @@
         <%= 'hi' %>
       <% end %>
     </div>
-<% else %>
-<h1>Hello World!</h1>
-This is my first Rails Webpage...
-<% end %>
+      <% else %>
+        <h1>Hello World!</h1>
+          This is my first Rails Webpage...
+      <% end %>
