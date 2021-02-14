@@ -4,6 +4,15 @@ document.querySelector('#results').insertAdjacentHTML("afterbegin", "<%= j (rend
 
 var arrData = [];
 
+var checkForAlerts = () => {
+  var gamesuccess = document.querySelector('#gamesuccess');
+  var gamefailed = document.querySelector('#gamefailed');
+  var gameduplicate = document.querySelector('#gameduplicate');
+
+  gamesuccess ? gamesuccess.remove() : gamefailed ? gamefailed.remove() : gameduplicate ? gameduplicate.remove() : null;
+
+}
+
 $(document).ready(function() {
     $(".selectpicker").selectpicker("refresh");
     $('select').attr('disabled', true);//disables select options
@@ -32,17 +41,18 @@ $(document).ready(function() {
             contentType: 'application/json',  
             success: function(data,status,xhr){
               console.log(data);
-              
-            document.querySelector('#alerts').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/alerts') %>"); 
+              checkForAlerts();
 
-            var duration = 5000; // 4 seconds
-            setTimeout(function () { $('#alerts').hide(); }, duration);
+              document.querySelector('#alerts').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/gamesuccess') %>"); 
+
             },
             error: function(xhr,status,error){
               if (error == "Unprocessable Entity") {
-                alert("Duplicate game found. Unable to process your request.");
+                checkForAlerts();
+                document.querySelector('#alerts').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/gameduplicateerror') %>"); 
               } else {
-                alert("Something went wrong. Please recheck and try again.");
+                checkForAlerts();
+                document.querySelector('#alerts').insertAdjacentHTML("afterbegin", "<%= j (render partial: './partials/gamefailederror') %>"); 
               }
             }
           }); 
